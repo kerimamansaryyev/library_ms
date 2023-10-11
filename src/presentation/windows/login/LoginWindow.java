@@ -1,5 +1,8 @@
 package presentation.windows.login;
 
+import domain.library_system.UseCaseFactory;
+import domain.library_system.exceptions.LibrarySystemException;
+import domain.library_system.exceptions.UserNotFoundException;
 import domain.library_system.operations.AccessType;
 import presentation.navigation.AppNavigationWindow;
 
@@ -7,15 +10,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
 
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 
 public class LoginWindow implements AppNavigationWindow {
 
@@ -24,6 +19,10 @@ public class LoginWindow implements AppNavigationWindow {
 
 	private JTextField textField;
 	private JPasswordField passwordField;
+
+	private  JButton btnNewButton;
+
+	private JComboBox<AccessType> comboBox;
 
 	/**
 	 * Launch the application.
@@ -48,6 +47,7 @@ public class LoginWindow implements AppNavigationWindow {
 	 */
 	public LoginWindow() {
 		initialize();
+		setUp();
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class LoginWindow implements AppNavigationWindow {
 		textField.setColumns(
 				10);
 
-		var comboBox = new JComboBox<AccessType>();
+		comboBox = new JComboBox<AccessType>();
 		comboBox.setModel(
 				new DefaultComboBoxModel<AccessType>(
 						AccessType.values()));
@@ -127,7 +127,7 @@ public class LoginWindow implements AppNavigationWindow {
 		panel.add(
 				lblNewLabel_2);
 
-		JButton btnNewButton = new JButton("Login");
+		btnNewButton = new JButton("Login");
 		btnNewButton.setBounds(
 				161,
 				243,
@@ -144,6 +144,39 @@ public class LoginWindow implements AppNavigationWindow {
 				26);
 		panel.add(
 				passwordField);
+	}
+
+
+	private void setUp(){
+		btnNewButton.addActionListener(
+				(action) -> login()
+		);
+	}
+
+	private  void login(){
+		final String userName = textField.getText();
+		final String password = new String(passwordField.getPassword());
+		final Object accessType = comboBox.getSelectedItem();
+
+		System.out.println(userName);
+		System.out.println(password);
+		System.out.println(accessType);
+
+		if(userName == null || userName.isEmpty() || password.isEmpty() || accessType == null){
+			JOptionPane.showMessageDialog(frame, "Please, fill in all the fields");
+			return;
+		}
+
+		final AccessType castedAccessType = (AccessType) accessType;
+
+
+		try {
+			final var user = UseCaseFactory.loginUser(userName, password, castedAccessType);
+		} catch (LibrarySystemException e) {
+			JOptionPane.showMessageDialog(frame, e.getMessage());
+		}
+
+
 	}
 
 	@Override
