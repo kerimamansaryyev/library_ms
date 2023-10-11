@@ -1,12 +1,12 @@
 package domain.entities;
 
-public class PersonData {
+public class PersonalData {
 
     private String firstName;
     private String lastNamme;
     private String phoneNumber;
 
-    public PersonData(String firstName, String lastNamme, String phoneNumber) {
+    public PersonalData(String firstName, String lastNamme, String phoneNumber) {
         this.firstName = firstName;
         this.lastNamme = lastNamme;
         this.phoneNumber = phoneNumber;

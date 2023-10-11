@@ -8,14 +8,17 @@ public class Book {
     private String title;
     private String isbnNumber;
     private boolean availability;
+    private List<BookType> bookType;
     private List<Author> authors;
 
 
-    public Book(String title, String isbnNumber, boolean availability, List<Author> authors) {
+    public Book(String title, String isbnNumber, boolean availability, List<Author> authors, List <BookType> bookType) {
         this.title = title;
         this.isbnNumber = isbnNumber;
         this.availability = availability;
         this.authors = Collections.unmodifiableList(authors);
+
+        // Add constructor logic
 
     }
 
@@ -45,6 +48,10 @@ public class Book {
     public List <Author> getAuthors () {
 
         return authors;
+    }
+
+    public List <BookType> getBookType () {
+        return bookType;
     }
 
 

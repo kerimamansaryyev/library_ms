@@ -6,11 +6,11 @@ public class Author {
 
     private String bio;
     private boolean credentials;
-    private PersonData person;
+    private PersonalData person;
 
     public Author (String bio, boolean credentials, String firstName, String lastName, String phoneNumber) {
 
-        person = new PersonData(firstName, lastName, phoneNumber);
+        person = new PersonalData(firstName, lastName, phoneNumber);
         this.bio = bio;
         this.credentials = credentials;
 
