@@ -41,7 +41,7 @@ final class AppNavigator {
     }
 
     void goBack(){
-        appNavigationViewStack.pop();;
+        appNavigationViewStack.pop();
 
     }
 

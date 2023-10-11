@@ -6,7 +6,7 @@ public enum LoginWindowAccessEnum {
 
 	private final String label;
 
-	private LoginWindowAccessEnum(String label) {
+	 LoginWindowAccessEnum(String label) {
 		this.label = label;
 	}
 
