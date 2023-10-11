@@ -1,5 +1,6 @@
 package presentation.windows.login;
 
+import domain.library_system.operations.AccessType;
 import presentation.navigation.AppNavigationWindow;
 
 import java.awt.EventQueue;
@@ -101,10 +102,10 @@ public class LoginWindow implements AppNavigationWindow {
 		textField.setColumns(
 				10);
 
-		var comboBox = new JComboBox<LoginWindowAccessEnum>();
+		var comboBox = new JComboBox<AccessType>();
 		comboBox.setModel(
-				new DefaultComboBoxModel<LoginWindowAccessEnum>(
-						LoginWindowAccessEnum.values()));
+				new DefaultComboBoxModel<AccessType>(
+						AccessType.values()));
 		comboBox.setBounds(
 				141,
 				183,
