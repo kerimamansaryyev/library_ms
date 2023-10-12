@@ -162,6 +162,7 @@ public class LoginWindow implements AppNavigationWindow {
 
 		try {
 			final var user = UseCaseFactory.loginUser(userName, password, castedAccessType);
+			passwordField.setText("");
 			AppNavigationFactory.navigateToDashboardWindow(user);
 		} catch (LibrarySystemException e) {
 			JOptionPane.showMessageDialog(frame, e.getMessage());
