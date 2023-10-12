@@ -1,6 +1,8 @@
 package domain.entities;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements  Cloneable, Serializable {
     private String city;
     private String state;
     private String zip;
@@ -43,5 +45,14 @@ public class Address {
 
     public void setStreet(String street) {
         this.street = street;
+    }
+
+    @Override
+    public Address clone() {
+        try {
+            return  (Address) super.clone();
+        } catch (CloneNotSupportedException e) {
+            return null;
+        }
     }
 }

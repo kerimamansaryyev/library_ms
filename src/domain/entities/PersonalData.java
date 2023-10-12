@@ -1,6 +1,8 @@
 package domain.entities;
 
-public class PersonalData implements  Cloneable {
+import java.io.Serializable;
+
+public class PersonalData implements  Cloneable, Serializable {
 
     private String firstName;
     private String lastName;
@@ -30,7 +32,7 @@ public class PersonalData implements  Cloneable {
     }
 
     public Address getAddress() {
-        return address;
+        return address.clone();
     }
 
     public void setFirstName(String firstName) {

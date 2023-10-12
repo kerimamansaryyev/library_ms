@@ -1,6 +1,7 @@
 package domain.entities.library_member;
 
 import domain.entities.Address;
+import domain.entities.PersonalData;
 
 public class LibraryMemberFactory {
 
@@ -15,12 +16,14 @@ public class LibraryMemberFactory {
             String phoneNumber){
 
         final var newMember = new LibraryMember(Integer.toString(preferredId));
-        newMember.setFirstName(firstName);
-        newMember.setLastName(lastName);
-        newMember.setPhoneNumber(phoneNumber);
-        newMember.setAddress(
-                new Address(
-                        city, state, zipCode, street
+        newMember.setPersonalData(
+                new PersonalData(
+                        firstName,
+                        lastName,
+                        phoneNumber,
+                        new Address(
+                                city, state, zipCode, street
+                        )
                 )
         );
 

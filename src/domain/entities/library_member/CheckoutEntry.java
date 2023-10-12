@@ -2,9 +2,10 @@ package domain.entities.library_member;
 
 import domain.entities.BookCopy;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class CheckoutEntry {
+public class CheckoutEntry implements Serializable {
 
 
     private final BookCopy bookCopy;

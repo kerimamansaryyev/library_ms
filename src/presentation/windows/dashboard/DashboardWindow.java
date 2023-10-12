@@ -56,6 +56,11 @@ public class DashboardWindow implements AppNavigationWindow {
 
 		if(user.supportsOperation(IAddMemberOperation.class)){
 			JButton btnNewButton = new JButton("Add member");
+			btnNewButton.addActionListener(
+					(action) -> AppNavigationFactory.navigateToAddMemberWindow(
+							user.tryGetOperation(IAddMemberOperation.class)
+					)
+			);
 			btnNewButton.setBounds(
 					horizontalOffset,
 					verticalOffset,
@@ -126,10 +131,10 @@ public class DashboardWindow implements AppNavigationWindow {
 				100,
 				801,
 				506);
-		frame.setDefaultCloseOperation(
-				JFrame.EXIT_ON_CLOSE);
+
 		frame.getContentPane().setLayout(
 				null);
+		overrideWindowClosing();
 
 		addOperationButtons();
 

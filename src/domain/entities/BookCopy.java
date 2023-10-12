@@ -1,15 +1,7 @@
 package domain.entities;
 
-public class BookCopy {
-    private int copyNumber;
+import java.io.Serializable;
 
-    public BookCopy(int copyNumber) {
-
-        this.copyNumber = copyNumber;
-    }
-
-    public int getCopyNumber() {
-        return copyNumber;
-    }
+public record BookCopy(int copyNumber) implements Serializable {
 
 }

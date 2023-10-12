@@ -22,6 +22,7 @@ final class AppNavigator {
 
         private void pop(){
             if(navigationViews.isEmpty()){
+                System.exit(0);
                 return;
             }
 

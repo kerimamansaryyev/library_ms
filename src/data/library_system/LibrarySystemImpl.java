@@ -2,6 +2,7 @@ package data.library_system;
 
 import data.data_access.DataAccess;
 import data.data_access.DataAccessFacade;
+import domain.entities.library_member.LibraryMember;
 import domain.entities.library_member.LibraryMemberFactory;
 import domain.library_system.LibrarySystem;
 import domain.library_system.User;
@@ -29,7 +30,7 @@ public class LibrarySystemImpl extends LibrarySystem {
     }
 
     @Override
-    public void addMember(
+    public LibraryMember addMember(
             String firstName,
             String lastName,
             String street,
@@ -45,7 +46,10 @@ public class LibrarySystemImpl extends LibrarySystem {
         if(!allMembers.isEmpty()){
             final var keys = allMembers.keySet();
             for(final var key: keys){
-                preferredId = Integer.parseInt(key);
+                final var keyAsInt = Integer.parseInt(key);
+                if(keyAsInt >= preferredId){
+                    preferredId = keyAsInt;
+                }
             }
             preferredId++;
         }
@@ -64,6 +68,8 @@ public class LibrarySystemImpl extends LibrarySystem {
         dataAccess.saveNewMember(
                 newMember
         );
+
+        return  newMember;
     }
 
     @Override

@@ -22,7 +22,7 @@ public class User implements Serializable {
     }
 
     @SuppressWarnings("unchecked")
-    <T extends ILibraryOperation> T tryGetOperation(Class<T> clazz){
+   public  <T extends ILibraryOperation> T tryGetOperation(Class<T> clazz){
 
         if(access == null){
             return  null;

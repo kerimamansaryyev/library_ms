@@ -1,9 +1,10 @@
 package domain.entities.library_member;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CheckoutRecord implements  Cloneable{
+public class CheckoutRecord implements  Cloneable, Serializable {
     private final List<CheckoutEntry> checkoutEntries;
 
     CheckoutRecord (){

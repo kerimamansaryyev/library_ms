@@ -3,9 +3,10 @@ package domain.entities.library_member;
 import domain.entities.Address;
 import domain.entities.PersonalData;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class LibraryMember {
+public class LibraryMember implements Serializable {
 
 
     private final CheckoutRecord checkoutRecord;
@@ -53,6 +54,10 @@ public class LibraryMember {
 
     public void setAddress(Address address) {
         personalData.setAddress(address);
+    }
+
+    void setPersonalData(PersonalData personalData){
+        this.personalData = personalData;
     }
 
 

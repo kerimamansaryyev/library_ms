@@ -1,5 +1,6 @@
 package domain.library_system.user_access;
 
+import domain.entities.library_member.LibraryMember;
 import domain.library_system.LibrarySystem;
 import domain.library_system.exceptions.BookNotFoundException;
 import domain.library_system.operations.library_operations.IAddBookCopyOperation;
@@ -17,7 +18,7 @@ public class AdministratorAccess extends Access implements IAddBookOperation, IA
     }
 
     @Override
-    public void addMember(
+    public LibraryMember addMember(
             String firstName,
             String lastName,
             String street,
@@ -25,7 +26,7 @@ public class AdministratorAccess extends Access implements IAddBookOperation, IA
             String state,
             String zipCode,
             String phoneNumber) {
-        system.addMember(
+        return system.addMember(
                 firstName,
                 lastName,
                 street,

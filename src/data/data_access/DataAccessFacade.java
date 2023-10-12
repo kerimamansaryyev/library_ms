@@ -16,7 +16,7 @@ import domain.library_system.User;
 public class DataAccessFacade implements DataAccess {
 
     enum StorageType {
-        BOOKS, MEMBERS, USERS, STATIC_REGISTRY;
+        BOOKS, MEMBERS, USERS,
     }
 
     public static final String OUTPUT_DIR = System.getProperty("user.dir")
@@ -51,8 +51,15 @@ public class DataAccessFacade implements DataAccess {
     public HashMap<String, LibraryMember> readMemberMap() {
         //Returns a Map with name/value pairs being
         //   memberId -> LibraryMember
-        return (HashMap<String, LibraryMember>) readFromStorage(
+        HashMap<String, LibraryMember> resultCasted = new HashMap<>();
+        var result = readFromStorage(
                 StorageType.MEMBERS);
+
+        if(result != null){
+            resultCasted = (HashMap<String, LibraryMember>) result;
+        }
+
+        return  resultCasted;
     }
 
 
