@@ -5,7 +5,7 @@ import data.data_access.DataAccessFacade;
 import domain.library_system.LibrarySystem;
 import domain.library_system.User;
 import domain.library_system.exceptions.*;
-import domain.library_system.operations.AccessType;
+import domain.library_system.operations.auth_operations.AccessType;
 
 
 public class LibrarySystemImpl extends LibrarySystem {
@@ -33,7 +33,11 @@ public class LibrarySystemImpl extends LibrarySystem {
     }
 
     @Override
-    public void checkoutBook(String memberId, String isbnNumber) throws MemberNotFoundException, BookNotFoundException, OutOfBookCopiesException, OutOfCheckoutsLimitException {
+    public void checkoutBook(String memberId, String isbnNumber)
+            throws MemberNotFoundException,
+            BookNotFoundException,
+            OutOfBookCopiesException,
+            OutOfCheckoutsLimitException {
 
     }
 
@@ -55,5 +59,10 @@ public class LibrarySystemImpl extends LibrarySystem {
         grantAccessForUser(foundUser, desiredAccessType);
 
         return  foundUser;
+    }
+
+    @Override
+    public void addBook(String isbnNumber, String title, String authors, int maxCheckoutLength, int numberOfCopies) {
+
     }
 }

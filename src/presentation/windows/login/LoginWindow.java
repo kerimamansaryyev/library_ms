@@ -2,8 +2,8 @@ package presentation.windows.login;
 
 import domain.library_system.UseCaseFactory;
 import domain.library_system.exceptions.LibrarySystemException;
-import domain.library_system.exceptions.UserNotFoundException;
-import domain.library_system.operations.AccessType;
+import domain.library_system.operations.auth_operations.AccessType;
+import presentation.navigation.AppNavigationFactory;
 import presentation.navigation.AppNavigationWindow;
 
 import java.awt.EventQueue;
@@ -24,9 +24,7 @@ public class LoginWindow implements AppNavigationWindow {
 
 	private JComboBox<AccessType> comboBox;
 
-	/**
-	 * Launch the application.
-	 */
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(
 				new Runnable() {
@@ -42,17 +40,13 @@ public class LoginWindow implements AppNavigationWindow {
 				});
 	}
 
-	/**
-	 * Create the application.
-	 */
+
 	public LoginWindow() {
 		initialize();
 		setUp();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+
 	private void initialize() {
 		frame = new JFrame();
 		frame.setResizable(
@@ -168,6 +162,7 @@ public class LoginWindow implements AppNavigationWindow {
 
 		try {
 			final var user = UseCaseFactory.loginUser(userName, password, castedAccessType);
+			AppNavigationFactory.navigateToDashboardWindow(user);
 		} catch (LibrarySystemException e) {
 			JOptionPane.showMessageDialog(frame, e.getMessage());
 		}

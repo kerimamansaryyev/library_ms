@@ -2,7 +2,7 @@ package domain.library_system;
 
 import domain.library_system.exceptions.PasswordIncorrectException;
 import domain.library_system.exceptions.UserNotFoundException;
-import domain.library_system.operations.AccessType;
+import domain.library_system.operations.auth_operations.AccessType;
 import domain.library_system.usecases.LoginUseCase;
 
 public final class UseCaseFactory {

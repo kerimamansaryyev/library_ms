@@ -1,6 +1,6 @@
-package domain.library_system.operations;
+package domain.library_system.operations.library_operations;
 
-public interface IAddMemberOperation {
+public interface IAddMemberOperation extends ILibraryOperation {
     void addMember(
             String firstName,
             String lastName,

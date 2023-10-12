@@ -1,4 +1,4 @@
-package domain.library_system.operations;
+package domain.library_system.operations.auth_operations;
 
 import java.io.Serializable;
 

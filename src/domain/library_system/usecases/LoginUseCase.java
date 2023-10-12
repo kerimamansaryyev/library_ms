@@ -1,11 +1,10 @@
 package domain.library_system.usecases;
 
-import domain.library_system.LibrarySystem;
 import domain.library_system.User;
 import domain.library_system.exceptions.PasswordIncorrectException;
 import domain.library_system.exceptions.UserNotFoundException;
-import domain.library_system.operations.AccessType;
-import domain.library_system.operations.ILoginOperation;
+import domain.library_system.operations.auth_operations.AccessType;
+import domain.library_system.operations.auth_operations.ILoginOperation;
 
 public final class LoginUseCase {
 

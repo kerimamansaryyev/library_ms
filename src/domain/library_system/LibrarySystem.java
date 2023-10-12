@@ -1,13 +1,18 @@
 package domain.library_system;
 
-import domain.library_system.operations.*;
+import domain.library_system.operations.auth_operations.AccessType;
+import domain.library_system.operations.auth_operations.ILoginOperation;
+import domain.library_system.operations.library_operations.IAddBookCopyOperation;
+import domain.library_system.operations.library_operations.IAddBookOperation;
+import domain.library_system.operations.library_operations.IAddMemberOperation;
+import domain.library_system.operations.library_operations.ICheckoutBookOperation;
 import domain.library_system.user_access.Access;
 
 public abstract class LibrarySystem implements
         ILoginOperation,
         ICheckoutBookOperation,
         IAddBookCopyOperation,
-        IAddMemberOperation {
+        IAddMemberOperation, IAddBookOperation {
 
 
 

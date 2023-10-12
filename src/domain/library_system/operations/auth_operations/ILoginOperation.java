@@ -1,4 +1,4 @@
-package domain.library_system.operations;
+package domain.library_system.operations.auth_operations;
 
 import domain.library_system.User;
 import domain.library_system.exceptions.PasswordIncorrectException;
