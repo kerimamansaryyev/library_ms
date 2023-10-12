@@ -158,10 +158,6 @@ public class LoginWindow implements AppNavigationWindow {
 		final String password = new String(passwordField.getPassword());
 		final Object accessType = comboBox.getSelectedItem();
 
-		System.out.println(userName);
-		System.out.println(password);
-		System.out.println(accessType);
-
 		if(userName == null || userName.isEmpty() || password.isEmpty() || accessType == null){
 			JOptionPane.showMessageDialog(frame, "Please, fill in all the fields");
 			return;

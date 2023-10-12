@@ -1,6 +1,8 @@
 package domain.library_system.operations;
 
-public enum AccessType {
+import java.io.Serializable;
+
+public enum AccessType implements Serializable {
     LIBRARIAN("Librarian"),
     ADMIN("Admin"),
     SUPER_ADMIN("Superadmin");
@@ -8,7 +10,7 @@ public enum AccessType {
     private final String displayName;
 
 
-    private AccessType(String displayName){
+    AccessType(String displayName){
         this.displayName = displayName;
     }
 

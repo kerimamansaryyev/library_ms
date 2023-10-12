@@ -10,11 +10,18 @@ public abstract class LibrarySystem implements
         IAddMemberOperation {
 
 
+
     private static LibrarySystem singleton;
 
     protected static void setSingleton(LibrarySystem librarySystem){
         singleton = librarySystem;
     }
+
+    public static User[] defaultUsers = {
+            new User("Kerim", "hello"),
+            new User("James", "hello"),
+            new User("Ivan", "hello")
+    };
 
     static LibrarySystem getInstance(){
         return  singleton;
@@ -24,10 +31,8 @@ public abstract class LibrarySystem implements
     protected void grantAccessForUser(User user, AccessType accessType){
 
         if(accessType == null){
-            user.setAccess(null);
+            return;
         }
-
-        assert accessType != null;
 
         user.setAccess(
                 switch (accessType){

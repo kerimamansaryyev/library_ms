@@ -2,13 +2,17 @@ package domain.library_system;
 
 import domain.library_system.user_access.Access;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private Access access;
+    private  String userName;
+    private  String password;
 
-    User(){}
 
-    public void logout(){
-        setAccess(null);
+    User(String userName, String password){
+        this.userName = userName;
+        this.password = password;
     }
 
 
@@ -36,4 +40,22 @@ public class User {
     void setAccess(Access access){
         this.access = access;
     }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public boolean isItsPassword(String password){
+        return  this.password.equals(password);
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
 }
