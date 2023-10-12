@@ -6,11 +6,11 @@ public class Author {
 
     private String bio;
     private boolean credentials;
-    private PersonalData person;
+    private PersonalData personalData;
 
     public Author (String bio, boolean credentials, String firstName, String lastName, String phoneNumber) {
 
-        person = new PersonalData(firstName, lastName, phoneNumber);
+        personalData = new PersonalData(firstName, lastName, phoneNumber);
         this.bio = bio;
         this.credentials = credentials;
 
@@ -27,17 +27,17 @@ public class Author {
 
     public String getFirstName () {
 
-        return person.getFirstName();
+        return personalData.getFirstName();
     }
     public String getLastName() {
 
-        return person.getLastNamme();
+        return personalData.getLastNamme();
 
     }
 
     public String getPhoneNumber () {
 
-        return person.getPhoneNumber();
+        return personalData.getPhoneNumber();
     }
     public void setCredentials(boolean credentials) {
 
@@ -55,6 +55,6 @@ public class Author {
         if (getClass() != ob.getClass()) return false;
 
         Author au = (Author) ob;
-        return au.person.equals(person) && au.bio.equals(bio);
+        return au.personalData.equals(personalData) && au.bio.equals(bio);
     }
 }

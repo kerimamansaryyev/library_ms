@@ -3,12 +3,12 @@ package domain.entities;
 public class PersonalData {
 
     private String firstName;
-    private String lastNamme;
+    private String lastName;
     private String phoneNumber;
 
     public PersonalData(String firstName, String lastNamme, String phoneNumber) {
         this.firstName = firstName;
-        this.lastNamme = lastNamme;
+        this.lastName = lastNamme;
         this.phoneNumber = phoneNumber;
     }
 
@@ -17,7 +17,7 @@ public class PersonalData {
     }
 
     public String getLastNamme() {
-        return lastNamme;
+        return lastName;
     }
 
 
@@ -30,7 +30,7 @@ public class PersonalData {
     }
 
     public void setLastNamme(String lastNamme) {
-        this.lastNamme = lastNamme;
+        this.lastName = lastNamme;
     }
 
 
