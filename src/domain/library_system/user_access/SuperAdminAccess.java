@@ -20,8 +20,8 @@ public class SuperAdminAccess extends Access implements IAddBookCopyOperation, I
     }
 
     @Override
-    public List<BookCopy> addBookCopy(String isbnNumber) throws BookNotFoundException {
-       return  system.addBookCopy(isbnNumber);
+    public int addBookCopy(String isbnNumber, int numOfCopies) throws BookNotFoundException {
+        return system.addBookCopy(isbnNumber, numOfCopies);
     }
 
     @Override

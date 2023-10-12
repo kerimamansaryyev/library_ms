@@ -6,9 +6,9 @@ import java.util.List;
 
 public final class BookFacade {
 
-    public static List<BookCopy> addBookCopies(Book book,int numOfCopies){
+    public static int addBookCopies(Book book,int numOfCopies){
         if(numOfCopies <= 0){
-            return  null;
+            return  0;
         }
         return book.addNewBookCopies(numOfCopies);
     }

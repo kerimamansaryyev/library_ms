@@ -71,7 +71,7 @@ public class DashboardWindow implements AppNavigationWindow {
 					btnNewButton);
 		}
 		if(user.supportsOperation(ICheckoutBookOperation.class)){
-			JButton btnNewButton = new JButton("CheckoutBook");
+			JButton btnNewButton = new JButton("Checkout book");
 			btnNewButton.setBounds(
 					horizontalOffset,
 					verticalOffset,
@@ -95,11 +95,19 @@ public class DashboardWindow implements AppNavigationWindow {
 
 		if(user.supportsOperation(IAddBookCopyOperation.class)){
 			JButton btnNewButton = new JButton("Add book copy");
+
+			btnNewButton.addActionListener(
+					(action) -> AppNavigationFacade.navigateToAddBookCopyWindow(
+							user.tryGetOperation(IAddBookCopyOperation.class)
+					)
+			);
+
 			btnNewButton.setBounds(
 					horizontalOffset,
 					verticalOffset,
 					buttonWidth,
 					buttonHeight);
+
 			verticalOffset+=gap;
 			frame.getContentPane().add(
 					btnNewButton);

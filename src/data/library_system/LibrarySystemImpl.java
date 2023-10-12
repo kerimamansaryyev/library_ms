@@ -24,12 +24,24 @@ public class LibrarySystemImpl extends LibrarySystem {
     }
 
 
+    private Book findBook(String isbnNumber) {
+        final var allMembers = dataAccess.readBooksMap();
+        return  allMembers.get(isbnNumber);
+    }
+
+
 
     private  LibrarySystemImpl(){}
 
     @Override
-    public List<BookCopy> addBookCopy(String isbnNumber) throws BookNotFoundException {
-        return  null;
+    public int addBookCopy(String isbnNumber, int numOfCopies) throws BookNotFoundException {
+        final var book = findBook(isbnNumber);
+        if(book == null){
+            throw  new BookNotFoundException();
+        }
+        final int newListOfCopies = BookFacade.addBookCopies(book, numOfCopies);
+        dataAccess.saveBook(book);
+        return  newListOfCopies;
     }
 
     @Override
@@ -113,13 +125,11 @@ public class LibrarySystemImpl extends LibrarySystem {
             int maxCheckoutLength,
             int numberOfCopies
     ) throws  BookAlreadyExistsException {
-        final var allMembers = dataAccess.readBooksMap();
-        final var keys = allMembers.keySet();
-        for(final var key: keys){
-            if(key.equals(isbnNumber)){
-                throw new BookAlreadyExistsException();
-            }
+
+        if(findBook(isbnNumber) != null){
+            throw new BookAlreadyExistsException();
         }
+
         final var book = BookFacade.createBook(
                 title,
                 isbnNumber,

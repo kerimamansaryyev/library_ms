@@ -55,16 +55,11 @@ public class Book implements  Cloneable, Serializable {
         return  bookCopies.size() > 0;
     }
 
-    List<BookCopy> addNewBookCopies(int numberOfCopies){
-        List<BookCopy> newBookCopies = new LinkedList<>();
+    int addNewBookCopies(int numberOfCopies){
         for(int i=0;i<numberOfCopies;i++){
-            newBookCopies.add(new BookCopy(this.clone(), bookCopies.size() + i + 1));
+            bookCopies.push(new BookCopy(this.clone(), bookCopies.size() + i + 1));
         }
-        for(final var newCopy: newBookCopies){
-            bookCopies.push(newCopy);
-        }
-
-        return  new ArrayList<>(newBookCopies);
+        return bookCopies.size();
     }
 
 

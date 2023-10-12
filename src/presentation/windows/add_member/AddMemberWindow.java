@@ -4,9 +4,11 @@ import domain.library_system.LibrarySystem;
 import domain.library_system.LibrarySystemFacade;
 import domain.library_system.operations.library_operations.IAddMemberOperation;
 import presentation.navigation.AppNavigationWindow;
+import presentation.windows.utils.validators.EmptyStringValidator;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.util.Arrays;
 
 import javax.swing.*;
 
@@ -311,12 +313,7 @@ public class AddMemberWindow implements AppNavigationWindow {
 				textField_6.getText(),
 		};
 
-		for(final var value: values){
-			if(value == null || value.trim().isEmpty()){
-				return  false;
-			}
-		}
-		return  true;
+		return  new EmptyStringValidator().areValuesValid(Arrays.asList(values));
 	}
 
 	@Override

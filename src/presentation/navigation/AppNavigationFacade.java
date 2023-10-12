@@ -1,7 +1,9 @@
 package presentation.navigation;
 
 import domain.library_system.User;
+import domain.library_system.operations.library_operations.IAddBookCopyOperation;
 import domain.library_system.operations.library_operations.IAddMemberOperation;
+import presentation.windows.add_book_copy.AddBookCopyWindow;
 import presentation.windows.add_member.AddMemberWindow;
 import presentation.windows.dashboard.DashboardWindow;
 import presentation.windows.login.LoginWindow;
@@ -21,6 +23,10 @@ public final class AppNavigationFacade {
 
     public static void navigateToAddMemberWindow(IAddMemberOperation addMemberOperation){
         navigateTo(new AddMemberWindow(addMemberOperation));
+    }
+
+    public static void navigateToAddBookCopyWindow(IAddBookCopyOperation addBookCopyOperation){
+        navigateTo(new AddBookCopyWindow(addBookCopyOperation));
     }
 
     public static void navigateTo(AppNavigationWindow window){

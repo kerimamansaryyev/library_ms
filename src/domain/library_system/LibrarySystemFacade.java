@@ -1,10 +1,14 @@
 package domain.library_system;
 
 import domain.entities.library_member.LibraryMember;
+import domain.library_system.exceptions.BookNotFoundException;
 import domain.library_system.exceptions.PasswordIncorrectException;
 import domain.library_system.exceptions.UserNotFoundException;
 import domain.library_system.operations.auth_operations.AccessType;
+import domain.library_system.operations.library_operations.IAddBookCopyOperation;
 import domain.library_system.operations.library_operations.IAddMemberOperation;
+import domain.library_system.usecases.AddBookCopyUseCase;
+import domain.library_system.usecases.AddMemberUseCase;
 import domain.library_system.usecases.LoginUseCase;
 
 public final class LibrarySystemFacade {
@@ -23,7 +27,8 @@ public final class LibrarySystemFacade {
             String state,
             String zipCode,
             String phoneNumber){
-        return addMemberOperation.addMember(
+        return AddMemberUseCase.addLibraryMember(
+                addMemberOperation,
                 firstName,
                 lastName,
                 street,
@@ -31,6 +36,18 @@ public final class LibrarySystemFacade {
                 state,
                 zipCode,
                 phoneNumber
+        );
+    }
+
+    public static int addBookCopy(
+            IAddBookCopyOperation addBookCopyOperation,
+            String isbnNumber,
+            int numberOfCopies
+    ) throws BookNotFoundException {
+        return AddBookCopyUseCase.addBookCopy(
+                addBookCopyOperation,
+                isbnNumber,
+                numberOfCopies
         );
     }
 
