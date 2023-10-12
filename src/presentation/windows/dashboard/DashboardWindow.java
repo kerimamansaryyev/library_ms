@@ -120,6 +120,7 @@ public class DashboardWindow implements AppNavigationWindow {
 
 	private void initialize() {
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.setBounds(
 				100,
 				100,
