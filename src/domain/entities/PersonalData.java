@@ -1,22 +1,26 @@
 package domain.entities;
 
-public class PersonalData {
+public class PersonalData implements  Cloneable {
 
     private String firstName;
     private String lastName;
     private String phoneNumber;
 
-    public PersonalData(String firstName, String lastNamme, String phoneNumber) {
+
+    private Address address;
+
+    public PersonalData(String firstName, String lastName, String phoneNumber, Address address) {
         this.firstName = firstName;
-        this.lastName = lastNamme;
+        this.lastName = lastName;
         this.phoneNumber = phoneNumber;
+        this.address = address;
     }
 
     public String getFirstName () {
         return firstName;
     }
 
-    public String getLastNamme() {
+    public String getLastName() {
         return lastName;
     }
 
@@ -25,16 +29,33 @@ public class PersonalData {
         return phoneNumber;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public void setLastNamme(String lastNamme) {
-        this.lastName = lastNamme;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    @Override
+    public PersonalData clone() {
+        try {
+            return (PersonalData) super.clone();
+        } catch (CloneNotSupportedException e) {
+            return null;
+        }
     }
 }

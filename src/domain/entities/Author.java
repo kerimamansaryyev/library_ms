@@ -10,7 +10,7 @@ public class Author {
 
     public Author (String bio, boolean credentials, String firstName, String lastName, String phoneNumber) {
 
-        personalData = new PersonalData(firstName, lastName, phoneNumber);
+//        personalData = new PersonalData(firstName, lastName, phoneNumber);
         this.bio = bio;
         this.credentials = credentials;
 
@@ -31,7 +31,7 @@ public class Author {
     }
     public String getLastName() {
 
-        return personalData.getLastNamme();
+        return personalData.getLastName();
 
     }
 

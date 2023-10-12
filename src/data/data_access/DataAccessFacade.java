@@ -8,7 +8,7 @@ import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import domain.entities.LibraryMember;
+import domain.entities.library_member.LibraryMember;
 import domain.library_system.LibrarySystem;
 import domain.library_system.User;
 

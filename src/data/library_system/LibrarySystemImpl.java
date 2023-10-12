@@ -2,6 +2,7 @@ package data.library_system;
 
 import data.data_access.DataAccess;
 import data.data_access.DataAccessFacade;
+import domain.entities.library_member.LibraryMemberFactory;
 import domain.library_system.LibrarySystem;
 import domain.library_system.User;
 import domain.library_system.exceptions.*;
@@ -28,8 +29,41 @@ public class LibrarySystemImpl extends LibrarySystem {
     }
 
     @Override
-    public void addMember(String firstName, String lastName, String street, String city, String state, String zipCode, String phoneNumber) {
+    public void addMember(
+            String firstName,
+            String lastName,
+            String street,
+            String city,
+            String state,
+            String zipCode,
+            String phoneNumber) {
 
+        int preferredId = 1;
+
+        final var allMembers = dataAccess.readMemberMap();
+
+        if(!allMembers.isEmpty()){
+            final var keys = allMembers.keySet();
+            for(final var key: keys){
+                preferredId = Integer.parseInt(key);
+            }
+            preferredId++;
+        }
+
+        final var newMember = LibraryMemberFactory.createLibraryMember(
+                preferredId,
+                firstName,
+                lastName,
+                street,
+                city,
+                 state,
+                zipCode,
+                phoneNumber
+        );
+
+        dataAccess.saveNewMember(
+                newMember
+        );
     }
 
     @Override

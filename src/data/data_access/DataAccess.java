@@ -2,7 +2,7 @@ package data.data_access;
 
 
 
-import domain.entities.LibraryMember;
+import domain.entities.library_member.LibraryMember;
 import domain.library_system.User;
 
 
