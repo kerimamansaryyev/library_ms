@@ -8,6 +8,8 @@ import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+
+import domain.entities.book.Book;
 import domain.entities.library_member.LibraryMember;
 import domain.library_system.LibrarySystem;
 import domain.library_system.User;
@@ -40,12 +42,28 @@ public class DataAccessFacade implements DataAccess {
         saveToStorage(StorageType.MEMBERS, mems);
     }
 
-//    @SuppressWarnings("unchecked")
-//    public  HashMap<String,Book> readBooksMap() {
-//        //Returns a Map with name/value pairs being
-//        //   isbn -> Book
-//        return (HashMap<String,Book>) readFromStorage(StorageType.BOOKS);
-//    }
+    @Override
+    public void saveBook(Book book) {
+        HashMap<String, Book> books = readBooksMap();
+        String isbnNumber = book.getIsbnNumber();
+        books.put(isbnNumber, book);
+        saveToStorage(StorageType.BOOKS, books);
+    }
+
+    @SuppressWarnings("unchecked")
+    public  HashMap<String,Book> readBooksMap() {
+        //Returns a Map with name/value pairs being
+        //   isbn -> Book
+        HashMap<String, Book> resultCasted = new HashMap<>();
+        var result = readFromStorage(
+                StorageType.BOOKS);
+
+        if(result != null){
+            resultCasted = (HashMap<String, Book>) result;
+        }
+
+        return  resultCasted;
+    }
 
     @SuppressWarnings("unchecked")
     public HashMap<String, LibraryMember> readMemberMap() {

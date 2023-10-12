@@ -40,19 +40,23 @@ public class LibraryMember implements Serializable {
         return personalData.getAddress();
     }
 
-    public void setFirstName(String firstName) {
+    public List<CheckoutEntry> getCheckoutEntries() {
+        return checkoutRecord.getCheckoutEntries();
+    }
+
+    void setFirstName(String firstName) {
         personalData.setFirstName(firstName);
     }
 
-    public void setLastName(String lastName) {
+    void setLastName(String lastName) {
         personalData.setLastName(lastName);
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    void setPhoneNumber(String phoneNumber) {
         personalData.setPhoneNumber(phoneNumber);
     }
 
-    public void setAddress(Address address) {
+    void setAddress(Address address) {
         personalData.setAddress(address);
     }
 
@@ -61,9 +65,7 @@ public class LibraryMember implements Serializable {
     }
 
 
-    public List<CheckoutEntry> getCheckoutEntries() {
-        return checkoutRecord.getCheckoutEntries();
-    }
+
 
 
 }

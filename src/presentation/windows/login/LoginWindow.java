@@ -1,9 +1,9 @@
 package presentation.windows.login;
 
-import domain.library_system.UseCaseFactory;
+import domain.library_system.LibrarySystemFacade;
 import domain.library_system.exceptions.LibrarySystemException;
 import domain.library_system.operations.auth_operations.AccessType;
-import presentation.navigation.AppNavigationFactory;
+import presentation.navigation.AppNavigationFacade;
 import presentation.navigation.AppNavigationWindow;
 
 import java.awt.EventQueue;
@@ -161,9 +161,9 @@ public class LoginWindow implements AppNavigationWindow {
 
 
 		try {
-			final var user = UseCaseFactory.loginUser(userName, password, castedAccessType);
+			final var user = LibrarySystemFacade.loginUser(userName, password, castedAccessType);
 			passwordField.setText("");
-			AppNavigationFactory.navigateToDashboardWindow(user);
+			AppNavigationFacade.navigateToDashboardWindow(user);
 		} catch (LibrarySystemException e) {
 			JOptionPane.showMessageDialog(frame, e.getMessage());
 		}

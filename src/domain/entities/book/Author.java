@@ -1,4 +1,6 @@
-package domain.entities;
+package domain.entities.book;
+
+import domain.entities.PersonalData;
 
 public class Author {
 

@@ -6,7 +6,7 @@ import presentation.windows.add_member.AddMemberWindow;
 import presentation.windows.dashboard.DashboardWindow;
 import presentation.windows.login.LoginWindow;
 
-public final class AppNavigationFactory {
+public final class AppNavigationFacade {
 
     private static final AppNavigator navigator = new AppNavigator();
 

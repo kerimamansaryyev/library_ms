@@ -2,12 +2,15 @@ package data.library_system;
 
 import data.data_access.DataAccess;
 import data.data_access.DataAccessFacade;
+import domain.entities.book.*;
 import domain.entities.library_member.LibraryMember;
-import domain.entities.library_member.LibraryMemberFactory;
+import domain.entities.library_member.LibraryMemberFacade;
 import domain.library_system.LibrarySystem;
 import domain.library_system.User;
 import domain.library_system.exceptions.*;
 import domain.library_system.operations.auth_operations.AccessType;
+
+import java.util.List;
 
 
 public class LibrarySystemImpl extends LibrarySystem {
@@ -25,8 +28,8 @@ public class LibrarySystemImpl extends LibrarySystem {
     private  LibrarySystemImpl(){}
 
     @Override
-    public void addBookCopy(String isbnNumber) throws BookNotFoundException {
-
+    public List<BookCopy> addBookCopy(String isbnNumber) throws BookNotFoundException {
+        return  null;
     }
 
     @Override
@@ -54,7 +57,7 @@ public class LibrarySystemImpl extends LibrarySystem {
             preferredId++;
         }
 
-        final var newMember = LibraryMemberFactory.createLibraryMember(
+        final var newMember = LibraryMemberFacade.createLibraryMember(
                 preferredId,
                 firstName,
                 lastName,
@@ -102,7 +105,30 @@ public class LibrarySystemImpl extends LibrarySystem {
     }
 
     @Override
-    public void addBook(String isbnNumber, String title, String authors, int maxCheckoutLength, int numberOfCopies) {
+    public Book addBook(
+            String isbnNumber,
+            String title,
+            List<Author> authors,
+            BookType bookType,
+            int maxCheckoutLength,
+            int numberOfCopies
+    ) throws  BookAlreadyExistsException {
+        final var allMembers = dataAccess.readBooksMap();
+        final var keys = allMembers.keySet();
+        for(final var key: keys){
+            if(key.equals(isbnNumber)){
+                throw new BookAlreadyExistsException();
+            }
+        }
+        final var book = BookFacade.createBook(
+                title,
+                isbnNumber,
+                bookType,
+                authors,
+                numberOfCopies
+        );
+        dataAccess.saveBook(book);
 
+        return  book;
     }
 }

@@ -1,5 +1,7 @@
 package presentation.windows.add_member;
 
+import domain.library_system.LibrarySystem;
+import domain.library_system.LibrarySystemFacade;
 import domain.library_system.operations.library_operations.IAddMemberOperation;
 import presentation.navigation.AppNavigationWindow;
 
@@ -261,8 +263,10 @@ public class AddMemberWindow implements AppNavigationWindow {
 					frame,
 					"Fill in all the inputs correctly!"
 			);
+			return;
 		}
-		final var addedMember = operation.addMember(
+		final var addedMember = LibrarySystemFacade.addLibraryMember(
+				operation,
 				textField.getText(),
 				textField_1.getText(),
 				textField_5.getText(),
@@ -308,7 +312,7 @@ public class AddMemberWindow implements AppNavigationWindow {
 		};
 
 		for(final var value: values){
-			if(value == null || value.isEmpty()){
+			if(value == null || value.trim().isEmpty()){
 				return  false;
 			}
 		}

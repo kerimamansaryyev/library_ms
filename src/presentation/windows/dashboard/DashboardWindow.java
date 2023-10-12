@@ -1,12 +1,12 @@
 package presentation.windows.dashboard;
 
-import domain.library_system.UseCaseFactory;
+import domain.library_system.LibrarySystemFacade;
 import domain.library_system.User;
 import domain.library_system.operations.library_operations.IAddBookCopyOperation;
 import domain.library_system.operations.library_operations.IAddBookOperation;
 import domain.library_system.operations.library_operations.IAddMemberOperation;
 import domain.library_system.operations.library_operations.ICheckoutBookOperation;
-import presentation.navigation.AppNavigationFactory;
+import presentation.navigation.AppNavigationFacade;
 import presentation.navigation.AppNavigationWindow;
 
 import java.awt.EventQueue;
@@ -57,7 +57,7 @@ public class DashboardWindow implements AppNavigationWindow {
 		if(user.supportsOperation(IAddMemberOperation.class)){
 			JButton btnNewButton = new JButton("Add member");
 			btnNewButton.addActionListener(
-					(action) -> AppNavigationFactory.navigateToAddMemberWindow(
+					(action) -> AppNavigationFacade.navigateToAddMemberWindow(
 							user.tryGetOperation(IAddMemberOperation.class)
 					)
 			);
@@ -114,8 +114,8 @@ public class DashboardWindow implements AppNavigationWindow {
 				buttonHeight);
 		logoutButton.addActionListener(
 				(action) -> {
-					UseCaseFactory.logoutUser(user);
-					AppNavigationFactory.goBack();
+					LibrarySystemFacade.logoutUser(user);
+					AppNavigationFacade.goBack();
 				}
 		);
 		frame.getContentPane().add(

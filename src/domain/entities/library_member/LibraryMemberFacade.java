@@ -3,9 +3,9 @@ package domain.entities.library_member;
 import domain.entities.Address;
 import domain.entities.PersonalData;
 
-public class LibraryMemberFactory {
+public class LibraryMemberFacade {
 
-    public  static LibraryMember createLibraryMember(
+    public static LibraryMember createLibraryMember(
             int preferredId,
             String firstName,
             String lastName,

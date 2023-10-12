@@ -1,6 +1,6 @@
 package domain.entities.library_member;
 
-import domain.entities.BookCopy;
+import domain.entities.book.BookCopy;
 
 import java.io.Serializable;
 import java.time.LocalDate;
