@@ -4,7 +4,6 @@ import domain.entities.Address;
 import domain.entities.PersonalData;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class LibraryMember implements Serializable {
 
@@ -17,7 +16,7 @@ public class LibraryMember implements Serializable {
 
     LibraryMember(String memberId) {
         this.memberId = memberId;
-        checkoutRecord = new CheckoutRecord();
+        checkoutRecord = new CheckoutRecord(this);
     }
 
     public String getMemberId() {

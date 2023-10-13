@@ -42,6 +42,10 @@ public class Book implements  Cloneable, Serializable {
         return  bookCopies.size();
     }
 
+    public boolean isAvailable(){
+        return getAvailableCopy() != null;
+    }
+
     BookCopy getAvailableCopy(){
         for(final var copy:bookCopies){
             if(copy.isAvailable()){

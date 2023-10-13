@@ -9,8 +9,10 @@ import java.util.List;
 
 public class CheckoutRecord implements  Cloneable, Serializable {
     private final List<CheckoutEntry> checkoutEntries;
+    private final LibraryMember libraryMember;
 
-    CheckoutRecord (){
+    CheckoutRecord (LibraryMember libraryMember){
+        this.libraryMember = libraryMember;
         this.checkoutEntries = new ArrayList<>();
     }
 
@@ -22,10 +24,16 @@ public class CheckoutRecord implements  Cloneable, Serializable {
         checkoutEntries.add(
                 new CheckoutEntry(
                         checkoutDate,
-                        copy
+                        copy,
+                        this
                 )
         );
     }
+
+    LibraryMember getLibraryMember(){
+        return libraryMember;
+    }
+
     public List<CheckoutEntry> readCheckoutEntries() {
         return List.copyOf(getCheckoutEntries());
     }
