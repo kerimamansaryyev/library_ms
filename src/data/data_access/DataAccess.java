@@ -4,7 +4,7 @@ package data.data_access;
 
 import domain.entities.book.Book;
 import domain.entities.library_member.LibraryMember;
-import domain.library_system.User;
+import domain.library_system.auth.User;
 
 
 import java.util.HashMap;

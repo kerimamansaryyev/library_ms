@@ -12,7 +12,7 @@ import java.util.List;
 import domain.entities.book.Book;
 import domain.entities.library_member.LibraryMember;
 import domain.library_system.LibrarySystem;
-import domain.library_system.User;
+import domain.library_system.auth.User;
 
 
 public class DataAccessFacade implements DataAccess {
