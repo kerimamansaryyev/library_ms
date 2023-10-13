@@ -50,9 +50,8 @@ public class AdministratorAccess extends Access implements IAddBookOperation, IA
             String title,
             List<Author> authors,
             BookType bookType,
-            int maxCheckoutLength,
             int numberOfCopies)
             throws BookAlreadyExistsException {
-        return system.addBook(isbnNumber, title, authors, bookType,maxCheckoutLength, numberOfCopies);
+        return system.addBook(isbnNumber, title, authors, bookType, numberOfCopies);
     }
 }

@@ -37,27 +37,11 @@ public class LibraryMember implements Serializable {
     }
 
     public Address getAddress() {
-        return personalData.getAddress();
+        return personalData.getAddress().clone();
     }
 
     public List<CheckoutEntry> getCheckoutEntries() {
         return checkoutRecord.getCheckoutEntries();
-    }
-
-    void setFirstName(String firstName) {
-        personalData.setFirstName(firstName);
-    }
-
-    void setLastName(String lastName) {
-        personalData.setLastName(lastName);
-    }
-
-    void setPhoneNumber(String phoneNumber) {
-        personalData.setPhoneNumber(phoneNumber);
-    }
-
-    void setAddress(Address address) {
-        personalData.setAddress(address);
     }
 
     void setPersonalData(PersonalData personalData){

@@ -14,7 +14,6 @@ public interface IAddBookOperation extends  ILibraryOperation{
             String title,
             List<Author> authors,
             BookType bookType,
-            int maxCheckoutLength,
             int numberOfCopies
     ) throws BookAlreadyExistsException;
 }

@@ -122,7 +122,6 @@ public class LibrarySystemImpl extends LibrarySystem {
             String title,
             List<Author> authors,
             BookType bookType,
-            int maxCheckoutLength,
             int numberOfCopies
     ) throws  BookAlreadyExistsException {
 

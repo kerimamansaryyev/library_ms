@@ -8,9 +8,9 @@ final class AppNavigator {
     private static class AppNavigationViewStack{
         private final Stack<AppNavigationView> navigationViews = new Stack<>();
 
-        private void push(AppNavigationView view){
+        private void push(AppNavigationView view, boolean shouldHidePrevious){
 
-            if(!navigationViews.isEmpty()){
+            if(!navigationViews.isEmpty() && shouldHidePrevious){
                 final var last = navigationViews.peek();
                 last.sleep();
             }
@@ -37,8 +37,8 @@ final class AppNavigator {
 
     private final AppNavigationViewStack appNavigationViewStack = new AppNavigationViewStack();
 
-    void navigateTo(AppNavigationView view){
-        appNavigationViewStack.push(view);
+    void navigateTo(AppNavigationView view, boolean shouldHidePrevious){
+        appNavigationViewStack.push(view, shouldHidePrevious);
     }
 
     void goBack(){

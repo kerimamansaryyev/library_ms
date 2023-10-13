@@ -1,26 +1,28 @@
 package domain.entities.book;
 
+import domain.entities.Address;
 import domain.entities.PersonalData;
 
-public class Author {
+import java.io.Serializable;
 
-    // Add the Credentials Opertion
+public class Author implements Serializable {
 
     private String bio;
     private boolean credentials;
+
+
+
     private PersonalData personalData;
 
-    public Author (String bio, boolean credentials, String firstName, String lastName, String phoneNumber) {
-
-//        personalData = new PersonalData(firstName, lastName, phoneNumber);
-        this.bio = bio;
-        this.credentials = credentials;
-
+    Author (String bio, boolean credentials, PersonalData personalData) {
+        setBio(bio);
+        setCredentials(credentials);
+        setPersonalData(personalData);
     }
 
-    public void setBio (String bio) {
 
-        this.bio = bio;
+    public Address getAddress() {
+        return personalData.getAddress().clone();
     }
 
     public String getBio() {
@@ -41,22 +43,43 @@ public class Author {
 
         return personalData.getPhoneNumber();
     }
-    public void setCredentials(boolean credentials) {
 
-        this.credentials = credentials;
-    }
 
-    public boolean isCredentials () {
+
+    public boolean hasCredentials () {
 
         return credentials;
     }
 
-    public boolean equals (Object ob) {
+    void setBio (String bio) {
 
-        if (ob == null) return false;
-        if (getClass() != ob.getClass()) return false;
+        this.bio = bio;
+    }
 
-        Author au = (Author) ob;
-        return au.personalData.equals(personalData) && au.bio.equals(bio);
+    void setCredentials(boolean credentials) {
+
+        this.credentials = credentials;
+    }
+
+
+    void setPersonalData(PersonalData personalData) {
+        this.personalData = personalData;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("""
+			(Bio: %s,First name: %s,Last name: %s,Phone number: %s,City: %s,State: %s,Street: %s,Zip code: %s,Credentials: %b),
+			""",
+                getBio(),
+                getFirstName(),
+                getLastName(),
+                getPhoneNumber(),
+                getAddress().getCity(),
+                getAddress().getState(),
+                getAddress().getStreet(),
+                getAddress().getZip(),
+                hasCredentials()
+		 );
     }
 }

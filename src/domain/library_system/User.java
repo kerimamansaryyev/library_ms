@@ -11,6 +11,7 @@ public class User implements Serializable {
     private  String password;
 
 
+    @SuppressWarnings("SameParameterValue")
     User(String userName, String password){
         this.userName = userName;
         this.password = password;

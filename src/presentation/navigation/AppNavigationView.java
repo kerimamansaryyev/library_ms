@@ -1,9 +1,12 @@
 package presentation.navigation;
 
-final class AppNavigationView {
+public final class AppNavigationView {
 
     private final AppNavigationWindow window;
 
+    public boolean isVisible(){
+        return window.getJFrame().isVisible();
+    }
     AppNavigationView(AppNavigationWindow window){
         this.window = window;
     }

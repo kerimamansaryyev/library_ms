@@ -1,10 +1,4 @@
-package presentation.windows.add_member;
-
-import domain.library_system.LibrarySystem;
-import domain.library_system.LibrarySystemFacade;
-import domain.library_system.operations.library_operations.IAddMemberOperation;
-import presentation.navigation.AppNavigationWindow;
-import presentation.windows.utils.validators.EmptyStringValidator;
+package presentation.windows.add_author;
 
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -12,12 +6,22 @@ import java.util.Arrays;
 
 import javax.swing.*;
 
-public class AddMemberWindow implements AppNavigationWindow {
+import domain.entities.book.Author;
+import domain.library_system.LibrarySystemFacade;
+import presentation.navigation.AppNavigationWindow;
+import presentation.windows.utils.validators.EmptyStringValidator;
 
+public class AddAuthorWindow implements AppNavigationWindow {
 
+	public interface AddAuthorWindowHandler{
+		void onAuthorAdded(Author author);
+	}
 
-	private final IAddMemberOperation operation;
+	private  final AddAuthorWindowHandler handler;
+
 	private JFrame frame;
+
+	private JCheckBox chckbxNewCheckBox;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -25,20 +29,13 @@ public class AddMemberWindow implements AppNavigationWindow {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
-
+	private JTextField textField_7;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(
 				() -> {
 					try {
-						AddMemberWindow window = new AddMemberWindow((
-								firstName,
-								lastName,
-								street,
-								city,
-								state,
-								zipCode,
-								phoneNumber) -> null);
+						AddAuthorWindow window = new AddAuthorWindow(null);
 						window.frame.setVisible(
 								true);
 					} catch (Exception e) {
@@ -47,12 +44,10 @@ public class AddMemberWindow implements AppNavigationWindow {
 				});
 	}
 
-
-	public AddMemberWindow(IAddMemberOperation addMemberOperation) {
-		this.operation = addMemberOperation;
+	public AddAuthorWindow(AddAuthorWindowHandler handler) {
+		this.handler = handler;
 		initialize();
 	}
-
 
 	private void initialize() {
 		frame = new JFrame();
@@ -61,7 +56,7 @@ public class AddMemberWindow implements AppNavigationWindow {
 				100,
 				100,
 				433,
-				487);
+				572);
 		frame.getContentPane().setLayout(
 				null);
 
@@ -149,7 +144,7 @@ public class AddMemberWindow implements AppNavigationWindow {
 				new Font("Lucida Grande", Font.PLAIN, 17));
 		lblNewLabel_1_1.setBounds(
 				152,
-				188,
+				276,
 				110,
 				33);
 		frame.getContentPane().add(
@@ -160,7 +155,7 @@ public class AddMemberWindow implements AppNavigationWindow {
 				SwingConstants.CENTER);
 		lblCity.setBounds(
 				65,
-				238,
+				326,
 				93,
 				16);
 		frame.getContentPane().add(
@@ -171,7 +166,7 @@ public class AddMemberWindow implements AppNavigationWindow {
 				10);
 		textField_3.setBounds(
 				160,
-				233,
+				321,
 				163,
 				26);
 		frame.getContentPane().add(
@@ -182,7 +177,7 @@ public class AddMemberWindow implements AppNavigationWindow {
 				SwingConstants.CENTER);
 		lblState.setBounds(
 				65,
-				276,
+				364,
 				93,
 				16);
 		frame.getContentPane().add(
@@ -193,7 +188,7 @@ public class AddMemberWindow implements AppNavigationWindow {
 				10);
 		textField_4.setBounds(
 				160,
-				271,
+				359,
 				163,
 				26);
 		frame.getContentPane().add(
@@ -204,7 +199,7 @@ public class AddMemberWindow implements AppNavigationWindow {
 				SwingConstants.CENTER);
 		lblStreet.setBounds(
 				65,
-				314,
+				402,
 				93,
 				16);
 		frame.getContentPane().add(
@@ -215,7 +210,7 @@ public class AddMemberWindow implements AppNavigationWindow {
 				10);
 		textField_5.setBounds(
 				160,
-				309,
+				397,
 				163,
 				26);
 		frame.getContentPane().add(
@@ -226,7 +221,7 @@ public class AddMemberWindow implements AppNavigationWindow {
 				SwingConstants.CENTER);
 		lblZipCode.setBounds(
 				65,
-				347,
+				435,
 				93,
 				16);
 		frame.getContentPane().add(
@@ -237,70 +232,100 @@ public class AddMemberWindow implements AppNavigationWindow {
 				10);
 		textField_6.setBounds(
 				160,
-				342,
+				430,
 				163,
 				26);
 		frame.getContentPane().add(
 				textField_6);
 
-		JButton btnNewButton = new JButton("Add member");
+		JButton btnNewButton = new JButton("Add Author");
 		btnNewButton.setBounds(
-				141,
-				401,
+				139,
+				484,
 				138,
 				38);
 		btnNewButton.addActionListener(
-				(action) -> addMember()
-		);
+				(action) -> addMember());
 		frame.getContentPane().add(
 				btnNewButton);
+
+		JLabel lblNewLabel_3_1 = new JLabel("BIO");
+		lblNewLabel_3_1.setHorizontalAlignment(
+				SwingConstants.CENTER);
+		lblNewLabel_3_1.setBounds(
+				55,
+				183,
+				100,
+				16);
+		frame.getContentPane().add(
+				lblNewLabel_3_1);
+
+		textField_7 = new JTextField();
+		textField_7.setColumns(
+				10);
+		textField_7.setBounds(
+				160,
+				178,
+				163,
+				26);
+		frame.getContentPane().add(
+				textField_7);
+
+		chckbxNewCheckBox = new JCheckBox("Credentials");
+		chckbxNewCheckBox.setHorizontalAlignment(
+				SwingConstants.CENTER);
+		chckbxNewCheckBox.setBounds(
+				139,
+				223,
+				128,
+				23);
+		frame.getContentPane().add(
+				chckbxNewCheckBox);
 	}
 
+	private void addMember() {
+		 if (!inputsAreValid()) {
+		 	JOptionPane.showMessageDialog(
+		 	frame,
+		 	"Fill in all the inputs correctly!");
+		 	return;
+		 }
+		 final var addedAuthor = LibrarySystemFacade.addBookAuthor(
+				 textField_7.getText(),
+				 chckbxNewCheckBox.isSelected(),
+				 textField.getText(),
+				 textField_1.getText(),
+				 textField_5.getText(),
+				 textField_3.getText(),
+				 textField_4.getText(),
+				 textField_6.getText(),
+				 textField_2.getText()
+		 );
+		 JOptionPane.showMessageDialog(
+		 	frame, "Successfully added an author!"
+		 );
+		 clear();
+		 handler.onAuthorAdded(addedAuthor);
+	}
 
-	private void addMember(){
-		if(!inputsAreValid()){
-			JOptionPane.showMessageDialog(
-					frame,
-					"Fill in all the inputs correctly!"
-			);
-			return;
+	private void clear(){
+		final JTextField[] textFields = {
+				textField,
+				textField_1,
+				textField_2,
+				textField_3,
+				textField_4,
+				textField_5,
+				textField_6,
+				textField_7,
+		};
+		for(final var textField: textFields){
+			textField.setText("");
 		}
-		final var addedMember = LibrarySystemFacade.addLibraryMember(
-				operation,
-				textField.getText(),
-				textField_1.getText(),
-				textField_5.getText(),
-				textField_3.getText(),
-				textField_4.getText(),
-				textField_6.getText(),
-				textField_2.getText()
-		);
-		JOptionPane.showMessageDialog(
-				frame,
-				String.format("""
-							New member has been created:
-							Id: %s
-							First name: %s
-							Last name: %s
-							Phone number: %s
-							City: %s
-							State: %s
-							Street: %s
-							Zip code: %s""",
-						addedMember.getMemberId(),
-						addedMember.getFirstName(),
-						addedMember.getLastName(),
-						addedMember.getPhoneNumber(),
-						addedMember.getAddress().getCity(),
-						addedMember.getAddress().getState(),
-						addedMember.getAddress().getStreet(),
-						addedMember.getAddress().getZip()
-				)
-		);
+		chckbxNewCheckBox.setSelected(false);
 	}
 
-
-	private boolean inputsAreValid(){
+	private boolean inputsAreValid() {
 		final String[] values = {
 				textField.getText(),
 				textField_1.getText(),
@@ -309,13 +334,15 @@ public class AddMemberWindow implements AppNavigationWindow {
 				textField_4.getText(),
 				textField_5.getText(),
 				textField_6.getText(),
-		};
+				textField_7.getText()};
 
-		return  new EmptyStringValidator().areValuesValid(Arrays.asList(values));
+		return new EmptyStringValidator().areValuesValid(
+				Arrays.asList(
+						values));
 	}
 
 	@Override
 	public JFrame getJFrame() {
-		return  frame;
+		return frame;
 	}
 }

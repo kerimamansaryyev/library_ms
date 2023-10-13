@@ -58,9 +58,8 @@ public class SuperAdminAccess extends Access implements IAddBookCopyOperation, I
             String title,
             List<Author> authors,
             BookType bookType,
-            int maxCheckoutLength,
             int numberOfCopies)
             throws BookAlreadyExistsException {
-        return system.addBook(isbnNumber, title, authors, bookType,maxCheckoutLength, numberOfCopies);
+        return system.addBook(isbnNumber, title, authors, bookType, numberOfCopies);
     }
 }

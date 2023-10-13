@@ -1,5 +1,7 @@
 package domain.entities.book;
 
+import domain.entities.Address;
+import domain.entities.PersonalData;
 import domain.library_system.exceptions.OutOfBookCopiesException;
 
 import java.util.List;
@@ -11,6 +13,31 @@ public final class BookFacade {
             return  0;
         }
         return book.addNewBookCopies(numOfCopies);
+    }
+
+    public static  Author createAuthor(
+            String bio,
+            boolean credentials,
+            String firstName,
+            String lastName,
+            String street,
+            String city,
+            String state,
+            String zipCode,
+            String phoneNumber
+    ){
+        return  new Author(
+            bio,
+            credentials,
+            new PersonalData(
+                    firstName,
+                    lastName,
+                    phoneNumber,
+                    new Address(
+                            city, state, zipCode, street
+                    )
+            )
+        );
     }
 
     public static Book createBook(
