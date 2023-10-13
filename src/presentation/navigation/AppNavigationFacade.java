@@ -2,7 +2,9 @@ package presentation.navigation;
 
 import domain.library_system.User;
 import domain.library_system.operations.library_operations.IAddBookCopyOperation;
+import domain.library_system.operations.library_operations.IAddBookOperation;
 import domain.library_system.operations.library_operations.IAddMemberOperation;
+import presentation.windows.add_book.AddBookWindow;
 import presentation.windows.add_book_copy.AddBookCopyWindow;
 import presentation.windows.add_member.AddMemberWindow;
 import presentation.windows.dashboard.DashboardWindow;
@@ -12,27 +14,38 @@ public final class AppNavigationFacade {
 
     private static final AppNavigator navigator = new AppNavigator();
 
+    public static void navigateToAddBookWindow(IAddBookOperation addBookOperation){
+        justNavigateTo(
+          new AddBookWindow(addBookOperation)
+        );
+    }
 
     public static void navigateToStartUpWindow(){
-        navigateTo(new LoginWindow());
+        justNavigateTo(new LoginWindow());
     }
 
     public static void navigateToDashboardWindow(User user){
-        navigateTo(new DashboardWindow(user));
+        justNavigateTo(new DashboardWindow(user));
     }
 
     public static void navigateToAddMemberWindow(IAddMemberOperation addMemberOperation){
-        navigateTo(new AddMemberWindow(addMemberOperation));
+        justNavigateTo(new AddMemberWindow(addMemberOperation));
     }
 
     public static void navigateToAddBookCopyWindow(IAddBookCopyOperation addBookCopyOperation){
-        navigateTo(new AddBookCopyWindow(addBookCopyOperation));
+        justNavigateTo(new AddBookCopyWindow(addBookCopyOperation));
     }
 
-    public static void navigateTo(AppNavigationWindow window){
+    private static void justNavigateTo(AppNavigationWindow window){
+        navigateTo(window, true);
+    }
+
+    public static AppNavigationView navigateTo(AppNavigationWindow window, boolean shouldHidePrevious){
+        final var view = new AppNavigationView(window);
         navigator.navigateTo(
-                new AppNavigationView(window)
+            view, shouldHidePrevious
         );
+        return view;
     }
 
     public static void goBack(){

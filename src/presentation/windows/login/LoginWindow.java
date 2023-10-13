@@ -27,15 +27,13 @@ public class LoginWindow implements AppNavigationWindow {
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(
-				new Runnable() {
-					public void run() {
-						try {
-							LoginWindow window = new LoginWindow();
-							window.frame.setVisible(
-									true);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
+				() -> {
+					try {
+						LoginWindow window = new LoginWindow();
+						window.frame.setVisible(
+								true);
+					} catch (Exception e) {
+						e.printStackTrace();
 					}
 				});
 	}
@@ -96,9 +94,9 @@ public class LoginWindow implements AppNavigationWindow {
 		textField.setColumns(
 				10);
 
-		comboBox = new JComboBox<AccessType>();
+		comboBox = new JComboBox<>();
 		comboBox.setModel(
-				new DefaultComboBoxModel<AccessType>(
+				new DefaultComboBoxModel<>(
 						AccessType.values()));
 		comboBox.setBounds(
 				141,

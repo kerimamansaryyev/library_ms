@@ -29,15 +29,13 @@ public class AddBookCopyWindow implements AppNavigationWindow {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(
-				new Runnable() {
-					public void run() {
-						try {
-							AddBookCopyWindow window = new AddBookCopyWindow((isbnNumber, num) -> 0);
-							window.frame.setVisible(
-									true);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
+				() -> {
+					try {
+						AddBookCopyWindow window = new AddBookCopyWindow((isbnNumber, num) -> 0);
+						window.frame.setVisible(
+								true);
+					} catch (Exception e) {
+						e.printStackTrace();
 					}
 				});
 	}

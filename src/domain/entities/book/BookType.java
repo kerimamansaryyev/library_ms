@@ -11,4 +11,9 @@ public enum BookType{
      BookType(int borrowDaysLimit){
         this.borrowDaysLimit = borrowDaysLimit;
     }
+
+    @Override
+    public String toString() {
+        return borrowDaysLimit + " days";
+    }
 }

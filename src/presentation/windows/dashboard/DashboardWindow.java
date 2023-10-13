@@ -24,15 +24,13 @@ public class DashboardWindow implements AppNavigationWindow {
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(
-				new Runnable() {
-					public void run() {
-						try {
-							DashboardWindow window = new DashboardWindow(null);
-							window.frame.setVisible(
-									true);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
+				() -> {
+					try {
+						DashboardWindow window = new DashboardWindow(null);
+						window.frame.setVisible(
+								true);
+					} catch (Exception e) {
+						e.printStackTrace();
 					}
 				});
 	}
@@ -88,6 +86,11 @@ public class DashboardWindow implements AppNavigationWindow {
 					verticalOffset,
 					buttonWidth,
 					buttonHeight);
+			btnNewButton.addActionListener(
+					(actionEvent) -> AppNavigationFacade.navigateToAddBookWindow(
+							user.tryGetOperation(IAddBookOperation.class)
+					)
+			);
 			verticalOffset+=gap;
 			frame.getContentPane().add(
 					btnNewButton);

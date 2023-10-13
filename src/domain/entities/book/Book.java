@@ -37,12 +37,8 @@ public class Book implements  Cloneable, Serializable {
         return bookType;
     }
 
-    void setTitle(String title) {
-        this.title = title;
-    }
-
-    void setBookType(BookType bookType) {
-        this.bookType = bookType;
+    public  int getNumberOfCopies(){
+        return  bookCopies.size();
     }
 
 
@@ -57,7 +53,7 @@ public class Book implements  Cloneable, Serializable {
 
     int addNewBookCopies(int numberOfCopies){
         for(int i=0;i<numberOfCopies;i++){
-            bookCopies.push(new BookCopy(this.clone(), bookCopies.size() + i + 1));
+            bookCopies.push(new BookCopy(this, bookCopies.size() + i + 1));
         }
         return bookCopies.size();
     }

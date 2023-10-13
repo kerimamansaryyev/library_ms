@@ -99,13 +99,13 @@ public class DataAccessFacade implements DataAccess {
 //        saveToStorage(StorageType.BOOKS, books);
 //    }
     static void loadUserMap(List<User> userList) {
-        HashMap<String, User> users = new HashMap<String, User>();
+        HashMap<String, User> users = new HashMap<>();
         userList.forEach(user -> users.put(user.getUserName(), user));
         saveToStorage(StorageType.USERS, users);
     }
 
     static void loadMemberMap(List<LibraryMember> memberList) {
-        HashMap<String, LibraryMember> members = new HashMap<String, LibraryMember>();
+        HashMap<String, LibraryMember> members = new HashMap<>();
         memberList.forEach(member -> members.put(member.getMemberId(), member));
         saveToStorage(StorageType.MEMBERS, members);
     }
