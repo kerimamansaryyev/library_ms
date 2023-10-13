@@ -176,7 +176,7 @@ public class AddMemberWindow implements AppNavigationWindow {
 		frame.getContentPane().add(
 				cityTextField);
 
-		JLabel lblState = new JLabel("State");
+		JLabel lblState = new JLabel("State:");
 		lblState.setHorizontalAlignment(
 				SwingConstants.CENTER);
 		lblState.setBounds(
@@ -297,6 +297,25 @@ public class AddMemberWindow implements AppNavigationWindow {
 						addedMember.getAddress().getZip()
 				)
 		);
+		clear();
+
+	}
+
+	private void clear () {
+
+		final JTextField [] textFields = {
+				firstNameTextField,
+				lastNameTextField,
+				streetTextField,
+				cityTextField,
+				stateTextField,
+				zipCodeTextField,
+				phoneNumberTextField,
+		};
+
+		for (final var textField: textFields){
+			textField.setText("");
+		}
 	}
 
 
