@@ -193,7 +193,7 @@ public class AddBookWindow implements AppNavigationWindow {
 		frame.getContentPane().add(
 				numOfCopiesTextField);
 
-		JButton btnAddAuthor = new JButton("Add author");
+		JButton btnAddAuthor = new JButton("Add Author");
 
 		btnAddAuthor.addActionListener(
 				(action) -> showAddAuthorsDialog()
