@@ -7,6 +7,9 @@
 - [Ivan Agaba](https://github.com/agabaivan)
 - [James Balimunsi](https://github.com/jamesbali)
 
+## Use default credentials for login
+Username: Kerim  Password: hello
+
 # Structure and architecture
 - In this project we used the DDD (Domain Driven Design)
 software design as for a whole architecture. 
