@@ -3,7 +3,7 @@ package domain.library_system.usecases;
 import domain.entities.library_member.LibraryMember;
 import domain.library_system.operations.library_operations.IAddMemberOperation;
 
-public class AddMemberUseCase {
+public final class AddMemberUseCase {
     public static LibraryMember addLibraryMember(
             IAddMemberOperation addMemberOperation,
             String firstName,

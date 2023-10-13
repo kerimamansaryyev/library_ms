@@ -253,6 +253,7 @@ public class AddMemberWindow implements AppNavigationWindow {
 		);
 		frame.getContentPane().add(
 				addMemberButton);
+		frame.setResizable(false);
 	}
 
 

@@ -1,30 +1,30 @@
 package domain.library_system;
 
-import domain.entities.book.Author;
-import domain.entities.book.Book;
-import domain.entities.book.BookFacade;
-import domain.entities.book.BookType;
+import domain.entities.book.*;
+import domain.entities.library_member.CheckoutRecord;
 import domain.entities.library_member.LibraryMember;
-import domain.library_system.exceptions.BookAlreadyExistsException;
-import domain.library_system.exceptions.BookNotFoundException;
-import domain.library_system.exceptions.PasswordIncorrectException;
-import domain.library_system.exceptions.UserNotFoundException;
+import domain.library_system.exceptions.*;
 import domain.library_system.operations.auth_operations.AccessType;
 import domain.library_system.operations.library_operations.IAddBookCopyOperation;
 import domain.library_system.operations.library_operations.IAddBookOperation;
 import domain.library_system.operations.library_operations.IAddMemberOperation;
-import domain.library_system.usecases.AddBookCopyUseCase;
-import domain.library_system.usecases.AddBookUseCase;
-import domain.library_system.usecases.AddMemberUseCase;
-import domain.library_system.usecases.LoginUseCase;
+import domain.library_system.operations.library_operations.ICheckoutBookOperation;
+import domain.library_system.usecases.*;
 
 import java.util.List;
 
 public final class LibrarySystemFacade {
 
-
     public static User loginUser(String username, String password, AccessType accessType) throws UserNotFoundException, PasswordIncorrectException {
         return LoginUseCase.loginUser(LibrarySystem.getInstance(), username, password, accessType);
+    }
+
+    public static CheckoutRecord checkoutBook(
+            ICheckoutBookOperation checkoutBookOperation,
+            String memberId,
+            String isbnNumber
+    ) throws OutOfBookCopiesException, BookNotFoundException, MemberNotFoundException {
+        return CheckoutBookUseCase.checkoutBook(checkoutBookOperation,memberId,isbnNumber);
     }
 
     public static LibraryMember addLibraryMember(

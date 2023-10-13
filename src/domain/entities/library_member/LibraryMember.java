@@ -40,16 +40,14 @@ public class LibraryMember implements Serializable {
         return personalData.getAddress().clone();
     }
 
-    public List<CheckoutEntry> getCheckoutEntries() {
-        return checkoutRecord.getCheckoutEntries();
+    public CheckoutRecord readCheckoutRecord(){
+        return  checkoutRecord.clone();
+    }
+    CheckoutRecord getCheckoutRecord() {
+        return checkoutRecord;
     }
 
     void setPersonalData(PersonalData personalData){
         this.personalData = personalData;
     }
-
-
-
-
-
 }

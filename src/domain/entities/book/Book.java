@@ -10,7 +10,7 @@ public class Book implements  Cloneable, Serializable {
     private String title;
     private BookType bookType;
     private final List<Author> authors = new ArrayList<>();
-    private final Stack<BookCopy> bookCopies = new Stack<>();
+    private final HashSet<BookCopy> bookCopies = new HashSet<>();
 
 
     Book(String title, String isbnNumber, BookType bookType, int numOfCopies) {
@@ -42,19 +42,19 @@ public class Book implements  Cloneable, Serializable {
         return  bookCopies.size();
     }
 
-
-    BookCopy takeBookCopy(){
-        return bookCopies.pop();
+    BookCopy getAvailableCopy(){
+        for(final var copy:bookCopies){
+            if(copy.isAvailable()){
+                return  copy;
+            }
+        }
+        return  null;
     }
 
-
-    boolean canTakeBookCopy(){
-        return  bookCopies.size() > 0;
-    }
 
     int addNewBookCopies(int numberOfCopies){
         for(int i=0;i<numberOfCopies;i++){
-            bookCopies.push(new BookCopy(this, bookCopies.size() + i + 1));
+            bookCopies.add(new BookCopy(this, bookCopies.size() + i + 1));
         }
         return bookCopies.size();
     }

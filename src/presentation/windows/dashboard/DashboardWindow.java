@@ -75,6 +75,11 @@ public class DashboardWindow implements AppNavigationWindow {
 					verticalOffset,
 					buttonWidth,
 					buttonHeight);
+			checkoutButton.addActionListener(
+					(action) -> AppNavigationFacade.navigateToCheckoutBookWindow(
+							user.tryGetOperation(ICheckoutBookOperation.class)
+					)
+			);
 			verticalOffset+=gap;
 			frame.getContentPane().add(
 					checkoutButton);

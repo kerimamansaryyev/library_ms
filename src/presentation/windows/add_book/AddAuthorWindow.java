@@ -1,4 +1,4 @@
-package presentation.windows.add_author;
+package presentation.windows.add_book;
 
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -11,7 +11,7 @@ import domain.library_system.LibrarySystemFacade;
 import presentation.navigation.AppNavigationWindow;
 import presentation.windows.utils.validators.EmptyStringValidator;
 
-public class AddAuthorWindow implements AppNavigationWindow {
+class AddAuthorWindow implements AppNavigationWindow {
 
 	public interface AddAuthorWindowHandler{
 		void onAuthorAdded(Author author);
@@ -281,6 +281,7 @@ public class AddAuthorWindow implements AppNavigationWindow {
 				23);
 		frame.getContentPane().add(
 				credentialsCheckBox);
+		frame.setResizable(false);
 	}
 
 	private void addMember() {

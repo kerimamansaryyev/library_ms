@@ -66,20 +66,5 @@ public class Author implements Serializable {
         this.personalData = personalData;
     }
 
-    @Override
-    public String toString() {
-        return String.format("""
-			(Bio: %s,First name: %s,Last name: %s,Phone number: %s,City: %s,State: %s,Street: %s,Zip code: %s,Credentials: %b),
-			""",
-                getBio(),
-                getFirstName(),
-                getLastName(),
-                getPhoneNumber(),
-                getAddress().getCity(),
-                getAddress().getState(),
-                getAddress().getStreet(),
-                getAddress().getZip(),
-                hasCredentials()
-		 );
-    }
+
 }

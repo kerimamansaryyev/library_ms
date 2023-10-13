@@ -2,8 +2,18 @@ package domain.entities.library_member;
 
 import domain.entities.Address;
 import domain.entities.PersonalData;
+import domain.entities.book.BookCopy;
+
+import java.time.LocalDate;
 
 public class LibraryMemberFacade {
+
+
+    public static CheckoutRecord checkoutBookCopy(LibraryMember libraryMember, BookCopy copy){
+        final  var checkoutRecord = libraryMember.getCheckoutRecord();
+        checkoutRecord.addCheckoutEntry(copy, LocalDate.now());
+        return libraryMember.readCheckoutRecord();
+    }
 
     public static LibraryMember createLibraryMember(
             int preferredId,

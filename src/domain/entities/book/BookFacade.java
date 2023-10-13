@@ -53,9 +53,15 @@ public final class BookFacade {
         return  newBook;
     }
     public static BookCopy borrowBookCopy(Book book) throws OutOfBookCopiesException {
-        if(!book.canTakeBookCopy()){
+
+        final var availableBookCopy = book.getAvailableCopy();
+
+        if(availableBookCopy == null){
             throw new OutOfBookCopiesException();
         }
-        return book.takeBookCopy();
+
+        availableBookCopy.makeUnavailable();
+
+        return  availableBookCopy;
     }
 }

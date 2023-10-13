@@ -3,6 +3,7 @@ package data.library_system;
 import data.data_access.DataAccess;
 import data.data_access.DataAccessFacade;
 import domain.entities.book.*;
+import domain.entities.library_member.CheckoutRecord;
 import domain.entities.library_member.LibraryMember;
 import domain.entities.library_member.LibraryMemberFacade;
 import domain.library_system.LibrarySystem;
@@ -27,6 +28,11 @@ public class LibrarySystemImpl extends LibrarySystem {
     private Book findBook(String isbnNumber) {
         final var allMembers = dataAccess.readBooksMap();
         return  allMembers.get(isbnNumber);
+    }
+
+    private LibraryMember findMember(String memberID) {
+        final var allMembers = dataAccess.readMemberMap();
+        return  allMembers.get(memberID);
     }
 
 
@@ -88,12 +94,27 @@ public class LibrarySystemImpl extends LibrarySystem {
     }
 
     @Override
-    public void checkoutBook(String memberId, String isbnNumber)
+    public CheckoutRecord checkoutBook(String memberId, String isbnNumber)
             throws MemberNotFoundException,
             BookNotFoundException,
-            OutOfBookCopiesException,
-            OutOfCheckoutsLimitException {
+            OutOfBookCopiesException{
+        final var member = findMember(memberId);
+        if(member == null){
+            throw new MemberNotFoundException();
+        }
+        final var book = findBook(isbnNumber);
+        if(book == null){
+            throw new BookNotFoundException();
+        }
 
+        final var bookCopy = BookFacade.borrowBookCopy(book);
+
+        final var checkoutRecord = LibraryMemberFacade.checkoutBookCopy(member, bookCopy);
+
+        dataAccess.saveNewMember(member);
+        dataAccess.saveBook(book);
+
+        return checkoutRecord;
     }
 
     @Override

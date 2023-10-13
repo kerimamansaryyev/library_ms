@@ -16,20 +16,39 @@ import presentation.navigation.AppNavigationFacade;
 import presentation.navigation.AppNavigationView;
 import presentation.navigation.AppNavigationWindow;
 import presentation.navigation.utils.NavigationWindowListener;
-import presentation.windows.add_author.AddAuthorWindow;
 import presentation.windows.utils.validators.EmptyStringValidator;
 import presentation.windows.utils.validators.IntegerParseValidator;
 
 public class AddBookWindow implements AppNavigationWindow {
 
-	private static class AuthorsListModel extends DefaultListModel<Author> implements  AddAuthorWindow.AddAuthorWindowHandler {
+	private record AuthorEntry(Author author) {
+
+		@Override
+			public String toString() {
+				return String.format("""
+								(Bio: %s,First name: %s,Last name: %s,Phone number: %s,City: %s,State: %s,Street: %s,Zip code: %s,Credentials: %b),
+								""",
+						author.getBio(),
+						author.getFirstName(),
+						author.getLastName(),
+						author.getPhoneNumber(),
+						author.getAddress().getCity(),
+						author.getAddress().getState(),
+						author.getAddress().getStreet(),
+						author.getAddress().getZip(),
+						author.hasCredentials()
+				);
+			}
+		}
+
+	private static class AuthorsListModel extends DefaultListModel<AuthorEntry> implements  AddAuthorWindow.AddAuthorWindowHandler {
 		public void clear(){
 			this.setSize(0);
 		}
 
 		@Override
 		public void onAuthorAdded(Author author) {
-			addElement(author);
+			addElement(new AuthorEntry(author));
 		}
 	}
 
@@ -208,7 +227,7 @@ public class AddBookWindow implements AppNavigationWindow {
 		frame.getContentPane().add(
 				scrollPane);
 
-		final var list = new JList<Author>();
+		final var list = new JList<AuthorEntry>();
 		list.setModel(authorsListModel);
 		scrollPane.setViewportView(
 				list);
@@ -224,6 +243,7 @@ public class AddBookWindow implements AppNavigationWindow {
 				35);
 		frame.getContentPane().add(
 				btnClear);
+		frame.setResizable(false);
 	}
 
 	private void showAddAuthorsDialog(){
@@ -282,12 +302,18 @@ public class AddBookWindow implements AppNavigationWindow {
 		final var numOfCopies = Integer.parseInt(numOfCopiesTextField.getText());
 		final BookType bookType = (BookType) bookTypeComboBox.getSelectedItem();
 
+		final List<Author> authors = new ArrayList<>(authorsListModel.size());
+
+		for(final var entry: Collections.list(authorsListModel.elements())){
+			authors.add(entry.author);
+		}
+
 		try {
 			final var addedBook = LibrarySystemFacade.addBook(
 					operation,
 					isbnNumber,
 					bookTitle,
-					Collections.list(authorsListModel.elements()),
+					authors,
 					numOfCopies,
 					bookType
 			);

@@ -3,6 +3,7 @@ package domain.library_system.user_access;
 import domain.entities.book.Author;
 import domain.entities.book.Book;
 import domain.entities.book.BookType;
+import domain.entities.library_member.CheckoutRecord;
 import domain.entities.library_member.LibraryMember;
 import domain.library_system.LibrarySystem;
 import domain.library_system.exceptions.*;
@@ -44,8 +45,8 @@ public class SuperAdminAccess extends Access implements IAddBookCopyOperation, I
     }
 
     @Override
-    public void checkoutBook(String memberId, String isbnNumber) throws MemberNotFoundException, BookNotFoundException, OutOfBookCopiesException, OutOfCheckoutsLimitException {
-        system.checkoutBook(
+    public CheckoutRecord checkoutBook(String memberId, String isbnNumber) throws MemberNotFoundException, BookNotFoundException, OutOfBookCopiesException {
+        return system.checkoutBook(
                 memberId,
                 isbnNumber
         );

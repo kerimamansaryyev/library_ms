@@ -15,6 +15,9 @@ public class CheckoutEntry implements Serializable {
     CheckoutEntry(LocalDate checkoutDate, BookCopy bookCopy) {
         this.checkoutDate = checkoutDate;
         this.bookCopy = bookCopy;
+        setDueDate(
+                checkoutDate.plusDays(bookCopy.readBook().getBookType().borrowDaysLimit)
+        );
     }
 
     void setDueDate(LocalDate dueDate){
@@ -25,10 +28,14 @@ public class CheckoutEntry implements Serializable {
         return checkoutDate;
     }
 
-    public BookCopy getBookCopy() {
-        return bookCopy;
+    public String getBookIsbnNumber(){
+        return  bookCopy.readBook().getIsbnNumber();
     }
 
+    public String getBookTitle(){
+        return  bookCopy.readBook().getTitle();
+
+    }
     public LocalDate getDueDate() {
         return dueDate;
     }

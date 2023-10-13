@@ -8,7 +8,7 @@ import domain.library_system.operations.library_operations.IAddBookOperation;
 
 import java.util.List;
 
-public class AddBookUseCase {
+public final class AddBookUseCase {
     public static Book addBook(
             IAddBookOperation operation,
             String isbnNumber,
