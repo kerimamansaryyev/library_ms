@@ -4,7 +4,13 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.util.Arrays;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import domain.entities.book.Author;
 import domain.library_system.LibrarySystemFacade;
@@ -13,11 +19,11 @@ import presentation.windows.utils.validators.EmptyStringValidator;
 
 class AddAuthorWindow implements AppNavigationWindow {
 
-	public interface AddAuthorWindowHandler{
+	public interface AddAuthorWindowHandler {
 		void onAuthorAdded(Author author);
 	}
 
-	private  final AddAuthorWindowHandler handler;
+	private final AddAuthorWindowHandler handler;
 
 	private JFrame frame;
 
@@ -49,6 +55,9 @@ class AddAuthorWindow implements AppNavigationWindow {
 		initialize();
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	private void initialize() {
 		frame = new JFrame();
 		overrideWindowClosing();
@@ -88,9 +97,9 @@ class AddAuthorWindow implements AppNavigationWindow {
 		lblNewLabel_1.setHorizontalAlignment(
 				SwingConstants.CENTER);
 		lblNewLabel_1.setBounds(
-				152,
+				139,
 				19,
-				110,
+				138,
 				33);
 		frame.getContentPane().add(
 				lblNewLabel_1);
@@ -137,7 +146,7 @@ class AddAuthorWindow implements AppNavigationWindow {
 		frame.getContentPane().add(
 				lblNewLabel_3);
 
-		JLabel lblNewLabel_1_1 = new JLabel("Address Info");
+		JLabel lblNewLabel_1_1 = new JLabel("ADDRESS");
 		lblNewLabel_1_1.setHorizontalAlignment(
 				SwingConstants.CENTER);
 		lblNewLabel_1_1.setFont(
@@ -281,35 +290,36 @@ class AddAuthorWindow implements AppNavigationWindow {
 				23);
 		frame.getContentPane().add(
 				credentialsCheckBox);
-		frame.setResizable(false);
+		frame.setResizable(
+				false);
 	}
 
 	private void addMember() {
-		 if (!inputsAreValid()) {
-		 	JOptionPane.showMessageDialog(
-		 	frame,
-		 	"Fill in all the inputs correctly!");
-		 	return;
-		 }
-		 final var addedAuthor = LibrarySystemFacade.addBookAuthor(
-				 bioTextField.getText(),
-				 credentialsCheckBox.isSelected(),
-				 firstNameTextField.getText(),
-				 lastNameTextField.getText(),
-				 streetTextField.getText(),
-				 cityTextField.getText(),
-				 stateTextField.getText(),
-				 zipCodeTextField.getText(),
-				 phoneNumberTextField.getText()
-		 );
-		 JOptionPane.showMessageDialog(
-		 	frame, "Author successfully added!"
-		 );
-		 clear();
-		 handler.onAuthorAdded(addedAuthor);
+		if (!inputsAreValid()) {
+			JOptionPane.showMessageDialog(
+					frame,
+					"Fill in all the inputs correctly!");
+			return;
+		}
+		final var addedAuthor = LibrarySystemFacade.addBookAuthor(
+				bioTextField.getText(),
+				credentialsCheckBox.isSelected(),
+				firstNameTextField.getText(),
+				lastNameTextField.getText(),
+				streetTextField.getText(),
+				cityTextField.getText(),
+				stateTextField.getText(),
+				zipCodeTextField.getText(),
+				phoneNumberTextField.getText());
+		JOptionPane.showMessageDialog(
+				frame,
+				"Author successfully added!");
+		clear();
+		handler.onAuthorAdded(
+				addedAuthor);
 	}
 
-	private void clear(){
+	private void clear() {
 		final JTextField[] textFields = {
 				firstNameTextField,
 				lastNameTextField,
@@ -318,12 +328,13 @@ class AddAuthorWindow implements AppNavigationWindow {
 				stateTextField,
 				streetTextField,
 				zipCodeTextField,
-				bioTextField,
-		};
-		for(final var textField: textFields){
-			textField.setText("");
+				bioTextField,};
+		for (final var textField : textFields) {
+			textField.setText(
+					"");
 		}
-		credentialsCheckBox.setSelected(false);
+		credentialsCheckBox.setSelected(
+				false);
 	}
 
 	private boolean inputsAreValid() {
