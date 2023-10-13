@@ -19,8 +19,8 @@ public class AddBookCopyWindow implements AppNavigationWindow {
 
 	private  final IAddBookCopyOperation operation;
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField isbnTextField;
+	private JTextField numberOfCopiesTextField;
 
 	/**
 	 * Launch the application.
@@ -79,17 +79,17 @@ public class AddBookCopyWindow implements AppNavigationWindow {
 		frame.getContentPane().add(
 				lblNewLabel);
 
-		textField = new JTextField();
-		textField.setHorizontalAlignment(
+		isbnTextField = new JTextField();
+		isbnTextField.setHorizontalAlignment(
 				SwingConstants.CENTER);
-		textField.setBounds(
+		isbnTextField.setBounds(
 				217,
 				76,
 				106,
 				38);
 		frame.getContentPane().add(
-				textField);
-		textField.setColumns(
+				isbnTextField);
+		isbnTextField.setColumns(
 				10);
 
 		JLabel lblNewLabel_1 = new JLabel("Number of Copies:");
@@ -105,17 +105,17 @@ public class AddBookCopyWindow implements AppNavigationWindow {
 		frame.getContentPane().add(
 				lblNewLabel_1);
 
-		textField_1 = new JTextField();
-		textField_1.setHorizontalAlignment(
+		numberOfCopiesTextField = new JTextField();
+		numberOfCopiesTextField.setHorizontalAlignment(
 				SwingConstants.CENTER);
-		textField_1.setBounds(
+		numberOfCopiesTextField.setBounds(
 				217,
 				141,
 				106,
 				38);
 		frame.getContentPane().add(
-				textField_1);
-		textField_1.setColumns(
+				numberOfCopiesTextField);
+		numberOfCopiesTextField.setColumns(
 				10);
 
 		JLabel lblNewLabel_2 = new JLabel("Book Copy");
@@ -131,48 +131,58 @@ public class AddBookCopyWindow implements AppNavigationWindow {
 		frame.getContentPane().add(
 				lblNewLabel_2);
 
-		JButton btnNewButton = new JButton("Add copy");
-		btnNewButton.addActionListener(
+		JButton addCopyButton = new JButton("Add copy");
+		addCopyButton.addActionListener(
 				(action) -> addBookCopy()
 		);
-		btnNewButton.setFont(
+		addCopyButton.setFont(
 				new Font("Lucida Sans", Font.PLAIN, 15));
-		btnNewButton.setBounds(
+		addCopyButton.setBounds(
 				155,
 				205,
 				118,
 				35);
 		frame.getContentPane().add(
-				btnNewButton);
+				addCopyButton);
 	}
 
 	private boolean inputsAreValid(){
-		return  new EmptyStringValidator().areValuesValid(
+		if(!new EmptyStringValidator().areValuesValid(
 				Arrays.asList(
-						textField.getText(),
-						textField_1.getText()
-				)
-		) && new IntegerParseValidator().areValuesValid(Collections.singletonList(textField_1.getText()));
+						isbnTextField.getText(),
+						numberOfCopiesTextField.getText()
+				))){
+			JOptionPane.showMessageDialog(frame, "Please, fill in all the fields correctly!");
+			return  false;
+		}
+		if(!new IntegerParseValidator().areValuesValid(Collections.singletonList(numberOfCopiesTextField.getText()))){
+			JOptionPane.showMessageDialog(frame, "Enter a numeric value into the field of number of copies");
+			return false;
+		}
+
+		final int numberOfCopies = Integer.parseInt(numberOfCopiesTextField.getText());
+
+		if(numberOfCopies <= 0){
+
+			JOptionPane.showMessageDialog(frame, "Number of copies must be greater than 0");
+			return  false;
+		}
+
+		return  true;
 	}
 
 	private void addBookCopy(){
 		if(!inputsAreValid()){
-			JOptionPane.showMessageDialog(frame, "Please, fill in all the fields correctly");
+
 			return;
 		}
 
-
-		final int numberOfCopies = Integer.parseInt(textField_1.getText());
-
-		if(numberOfCopies <= 0){
-			JOptionPane.showMessageDialog(frame, "Number of copies must be greater than 0");
-			return;
-		}
+		final int numberOfCopies = Integer.parseInt(numberOfCopiesTextField.getText());
 
 		try {
 			final var newCopiesNum = LibrarySystemFacade.addBookCopy(
 					operation,
-					textField.getText(),
+					isbnTextField.getText(),
 					numberOfCopies
 			);
 			JOptionPane.showMessageDialog(

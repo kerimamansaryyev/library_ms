@@ -17,12 +17,12 @@ public class LoginWindow implements AppNavigationWindow {
 	private JFrame frame;
 
 
-	private JTextField textField;
+	private JTextField userNameTextField;
 	private JPasswordField passwordField;
 
-	private  JButton btnNewButton;
+	private  JButton loginButton;
 
-	private JComboBox<AccessType> comboBox;
+	private JComboBox<AccessType> accessTypeComboBox;
 
 
 	public static void main(String[] args) {
@@ -83,28 +83,28 @@ public class LoginWindow implements AppNavigationWindow {
 		panel.add(
 				lblNewLabel_1);
 
-		textField = new JTextField();
-		textField.setBounds(
+		userNameTextField = new JTextField();
+		userNameTextField.setBounds(
 				206,
 				83,
 				130,
 				26);
 		panel.add(
-				textField);
-		textField.setColumns(
+				userNameTextField);
+		userNameTextField.setColumns(
 				10);
 
-		comboBox = new JComboBox<>();
-		comboBox.setModel(
+		accessTypeComboBox = new JComboBox<>();
+		accessTypeComboBox.setModel(
 				new DefaultComboBoxModel<>(
 						AccessType.values()));
-		comboBox.setBounds(
+		accessTypeComboBox.setBounds(
 				141,
 				183,
 				160,
 				27);
 		panel.add(
-				comboBox);
+				accessTypeComboBox);
 
 		JLabel lblNewLabel_2 = new JLabel("Library Management System");
 		lblNewLabel_2.setHorizontalAlignment(
@@ -119,14 +119,14 @@ public class LoginWindow implements AppNavigationWindow {
 		panel.add(
 				lblNewLabel_2);
 
-		btnNewButton = new JButton("Login");
-		btnNewButton.setBounds(
+		loginButton = new JButton("Login");
+		loginButton.setBounds(
 				161,
 				243,
 				117,
 				29);
 		panel.add(
-				btnNewButton);
+				loginButton);
 
 		passwordField = new JPasswordField();
 		passwordField.setBounds(
@@ -140,15 +140,15 @@ public class LoginWindow implements AppNavigationWindow {
 
 
 	private void setUp(){
-		btnNewButton.addActionListener(
+		loginButton.addActionListener(
 				(action) -> login()
 		);
 	}
 
 	private  void login(){
-		final String userName = textField.getText();
+		final String userName = userNameTextField.getText();
 		final String password = new String(passwordField.getPassword());
-		final Object accessType = comboBox.getSelectedItem();
+		final Object accessType = accessTypeComboBox.getSelectedItem();
 
 		if(userName == null || userName.isEmpty() || password.isEmpty() || accessType == null){
 			JOptionPane.showMessageDialog(frame, "Please, fill in all the fields");

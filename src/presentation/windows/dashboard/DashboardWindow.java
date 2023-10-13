@@ -53,59 +53,59 @@ public class DashboardWindow implements AppNavigationWindow {
 
 
 		if(user.supportsOperation(IAddMemberOperation.class)){
-			JButton btnNewButton = new JButton("Add member");
-			btnNewButton.addActionListener(
+			JButton addMemberButton = new JButton("Add member");
+			addMemberButton.addActionListener(
 					(action) -> AppNavigationFacade.navigateToAddMemberWindow(
 							user.tryGetOperation(IAddMemberOperation.class)
 					)
 			);
-			btnNewButton.setBounds(
+			addMemberButton.setBounds(
 					horizontalOffset,
 					verticalOffset,
 					buttonWidth,
 					buttonHeight);
 			verticalOffset+=gap;
 			frame.getContentPane().add(
-					btnNewButton);
+					addMemberButton);
 		}
 		if(user.supportsOperation(ICheckoutBookOperation.class)){
-			JButton btnNewButton = new JButton("Checkout book");
-			btnNewButton.setBounds(
+			JButton checkoutButton = new JButton("Checkout book");
+			checkoutButton.setBounds(
 					horizontalOffset,
 					verticalOffset,
 					buttonWidth,
 					buttonHeight);
 			verticalOffset+=gap;
 			frame.getContentPane().add(
-					btnNewButton);
+					checkoutButton);
 		}
 		if(user.supportsOperation(IAddBookOperation.class)){
-			JButton btnNewButton = new JButton("Add book");
-			btnNewButton.setBounds(
+			JButton addBookButton = new JButton("Add book");
+			addBookButton.setBounds(
 					horizontalOffset,
 					verticalOffset,
 					buttonWidth,
 					buttonHeight);
-			btnNewButton.addActionListener(
+			addBookButton.addActionListener(
 					(actionEvent) -> AppNavigationFacade.navigateToAddBookWindow(
 							user.tryGetOperation(IAddBookOperation.class)
 					)
 			);
 			verticalOffset+=gap;
 			frame.getContentPane().add(
-					btnNewButton);
+					addBookButton);
 		}
 
 		if(user.supportsOperation(IAddBookCopyOperation.class)){
-			JButton btnNewButton = new JButton("Add book copy");
+			JButton addBookCopyButton = new JButton("Add book copy");
 
-			btnNewButton.addActionListener(
+			addBookCopyButton.addActionListener(
 					(action) -> AppNavigationFacade.navigateToAddBookCopyWindow(
 							user.tryGetOperation(IAddBookCopyOperation.class)
 					)
 			);
 
-			btnNewButton.setBounds(
+			addBookCopyButton.setBounds(
 					horizontalOffset,
 					verticalOffset,
 					buttonWidth,
@@ -113,7 +113,7 @@ public class DashboardWindow implements AppNavigationWindow {
 
 			verticalOffset+=gap;
 			frame.getContentPane().add(
-					btnNewButton);
+					addBookCopyButton);
 		}
 
 

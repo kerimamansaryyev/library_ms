@@ -21,15 +21,15 @@ public class AddAuthorWindow implements AppNavigationWindow {
 
 	private JFrame frame;
 
-	private JCheckBox chckbxNewCheckBox;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
+	private JCheckBox credentialsCheckBox;
+	private JTextField firstNameTextField;
+	private JTextField lastNameTextField;
+	private JTextField phoneNumberTextField;
+	private JTextField cityTextField;
+	private JTextField stateTextField;
+	private JTextField streetTextField;
+	private JTextField zipCodeTextField;
+	private JTextField bioTextField;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(
@@ -60,15 +60,15 @@ public class AddAuthorWindow implements AppNavigationWindow {
 		frame.getContentPane().setLayout(
 				null);
 
-		textField = new JTextField();
-		textField.setBounds(
+		firstNameTextField = new JTextField();
+		firstNameTextField.setBounds(
 				160,
 				64,
 				163,
 				26);
 		frame.getContentPane().add(
-				textField);
-		textField.setColumns(
+				firstNameTextField);
+		firstNameTextField.setColumns(
 				10);
 
 		JLabel lblNewLabel = new JLabel("First name:");
@@ -95,27 +95,27 @@ public class AddAuthorWindow implements AppNavigationWindow {
 		frame.getContentPane().add(
 				lblNewLabel_1);
 
-		textField_1 = new JTextField();
-		textField_1.setBounds(
+		lastNameTextField = new JTextField();
+		lastNameTextField.setBounds(
 				160,
 				102,
 				163,
 				26);
 		frame.getContentPane().add(
-				textField_1);
-		textField_1.setColumns(
+				lastNameTextField);
+		lastNameTextField.setColumns(
 				10);
 
-		textField_2 = new JTextField();
-		textField_2.setColumns(
+		phoneNumberTextField = new JTextField();
+		phoneNumberTextField.setColumns(
 				10);
-		textField_2.setBounds(
+		phoneNumberTextField.setBounds(
 				160,
 				140,
 				163,
 				26);
 		frame.getContentPane().add(
-				textField_2);
+				phoneNumberTextField);
 
 		JLabel lblNewLabel_2 = new JLabel("Last name:");
 		lblNewLabel_2.setHorizontalAlignment(
@@ -161,16 +161,16 @@ public class AddAuthorWindow implements AppNavigationWindow {
 		frame.getContentPane().add(
 				lblCity);
 
-		textField_3 = new JTextField();
-		textField_3.setColumns(
+		cityTextField = new JTextField();
+		cityTextField.setColumns(
 				10);
-		textField_3.setBounds(
+		cityTextField.setBounds(
 				160,
 				321,
 				163,
 				26);
 		frame.getContentPane().add(
-				textField_3);
+				cityTextField);
 
 		JLabel lblState = new JLabel("State");
 		lblState.setHorizontalAlignment(
@@ -183,16 +183,16 @@ public class AddAuthorWindow implements AppNavigationWindow {
 		frame.getContentPane().add(
 				lblState);
 
-		textField_4 = new JTextField();
-		textField_4.setColumns(
+		stateTextField = new JTextField();
+		stateTextField.setColumns(
 				10);
-		textField_4.setBounds(
+		stateTextField.setBounds(
 				160,
 				359,
 				163,
 				26);
 		frame.getContentPane().add(
-				textField_4);
+				stateTextField);
 
 		JLabel lblStreet = new JLabel("Street:");
 		lblStreet.setHorizontalAlignment(
@@ -205,16 +205,16 @@ public class AddAuthorWindow implements AppNavigationWindow {
 		frame.getContentPane().add(
 				lblStreet);
 
-		textField_5 = new JTextField();
-		textField_5.setColumns(
+		streetTextField = new JTextField();
+		streetTextField.setColumns(
 				10);
-		textField_5.setBounds(
+		streetTextField.setBounds(
 				160,
 				397,
 				163,
 				26);
 		frame.getContentPane().add(
-				textField_5);
+				streetTextField);
 
 		JLabel lblZipCode = new JLabel("Zip Code:");
 		lblZipCode.setHorizontalAlignment(
@@ -227,27 +227,27 @@ public class AddAuthorWindow implements AppNavigationWindow {
 		frame.getContentPane().add(
 				lblZipCode);
 
-		textField_6 = new JTextField();
-		textField_6.setColumns(
+		zipCodeTextField = new JTextField();
+		zipCodeTextField.setColumns(
 				10);
-		textField_6.setBounds(
+		zipCodeTextField.setBounds(
 				160,
 				430,
 				163,
 				26);
 		frame.getContentPane().add(
-				textField_6);
+				zipCodeTextField);
 
-		JButton btnNewButton = new JButton("Add Author");
-		btnNewButton.setBounds(
+		JButton addAuthorButton = new JButton("Add Author");
+		addAuthorButton.setBounds(
 				139,
 				484,
 				138,
 				38);
-		btnNewButton.addActionListener(
+		addAuthorButton.addActionListener(
 				(action) -> addMember());
 		frame.getContentPane().add(
-				btnNewButton);
+				addAuthorButton);
 
 		JLabel lblNewLabel_3_1 = new JLabel("BIO");
 		lblNewLabel_3_1.setHorizontalAlignment(
@@ -260,27 +260,27 @@ public class AddAuthorWindow implements AppNavigationWindow {
 		frame.getContentPane().add(
 				lblNewLabel_3_1);
 
-		textField_7 = new JTextField();
-		textField_7.setColumns(
+		bioTextField = new JTextField();
+		bioTextField.setColumns(
 				10);
-		textField_7.setBounds(
+		bioTextField.setBounds(
 				160,
 				178,
 				163,
 				26);
 		frame.getContentPane().add(
-				textField_7);
+				bioTextField);
 
-		chckbxNewCheckBox = new JCheckBox("Credentials");
-		chckbxNewCheckBox.setHorizontalAlignment(
+		credentialsCheckBox = new JCheckBox("Credentials");
+		credentialsCheckBox.setHorizontalAlignment(
 				SwingConstants.CENTER);
-		chckbxNewCheckBox.setBounds(
+		credentialsCheckBox.setBounds(
 				139,
 				223,
 				128,
 				23);
 		frame.getContentPane().add(
-				chckbxNewCheckBox);
+				credentialsCheckBox);
 	}
 
 	private void addMember() {
@@ -291,15 +291,15 @@ public class AddAuthorWindow implements AppNavigationWindow {
 		 	return;
 		 }
 		 final var addedAuthor = LibrarySystemFacade.addBookAuthor(
-				 textField_7.getText(),
-				 chckbxNewCheckBox.isSelected(),
-				 textField.getText(),
-				 textField_1.getText(),
-				 textField_5.getText(),
-				 textField_3.getText(),
-				 textField_4.getText(),
-				 textField_6.getText(),
-				 textField_2.getText()
+				 bioTextField.getText(),
+				 credentialsCheckBox.isSelected(),
+				 firstNameTextField.getText(),
+				 lastNameTextField.getText(),
+				 streetTextField.getText(),
+				 cityTextField.getText(),
+				 stateTextField.getText(),
+				 zipCodeTextField.getText(),
+				 phoneNumberTextField.getText()
 		 );
 		 JOptionPane.showMessageDialog(
 		 	frame, "Successfully added an author!"
@@ -310,31 +310,31 @@ public class AddAuthorWindow implements AppNavigationWindow {
 
 	private void clear(){
 		final JTextField[] textFields = {
-				textField,
-				textField_1,
-				textField_2,
-				textField_3,
-				textField_4,
-				textField_5,
-				textField_6,
-				textField_7,
+				firstNameTextField,
+				lastNameTextField,
+				phoneNumberTextField,
+				cityTextField,
+				stateTextField,
+				streetTextField,
+				zipCodeTextField,
+				bioTextField,
 		};
 		for(final var textField: textFields){
 			textField.setText("");
 		}
-		chckbxNewCheckBox.setSelected(false);
+		credentialsCheckBox.setSelected(false);
 	}
 
 	private boolean inputsAreValid() {
 		final String[] values = {
-				textField.getText(),
-				textField_1.getText(),
-				textField_2.getText(),
-				textField_3.getText(),
-				textField_4.getText(),
-				textField_5.getText(),
-				textField_6.getText(),
-				textField_7.getText()};
+				firstNameTextField.getText(),
+				lastNameTextField.getText(),
+				phoneNumberTextField.getText(),
+				cityTextField.getText(),
+				stateTextField.getText(),
+				streetTextField.getText(),
+				zipCodeTextField.getText(),
+				bioTextField.getText()};
 
 		return new EmptyStringValidator().areValuesValid(
 				Arrays.asList(

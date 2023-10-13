@@ -17,13 +17,13 @@ public class AddMemberWindow implements AppNavigationWindow {
 
 	private final IAddMemberOperation operation;
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
+	private JTextField firstNameTextField;
+	private JTextField lastNameTextField;
+	private JTextField phoneNumberTextField;
+	private JTextField cityTextField;
+	private JTextField stateTextField;
+	private JTextField streetTextField;
+	private JTextField zipCodeTextField;
 
 
 	public static void main(String[] args) {
@@ -64,15 +64,15 @@ public class AddMemberWindow implements AppNavigationWindow {
 		frame.getContentPane().setLayout(
 				null);
 
-		textField = new JTextField();
-		textField.setBounds(
+		firstNameTextField = new JTextField();
+		firstNameTextField.setBounds(
 				160,
 				64,
 				163,
 				26);
 		frame.getContentPane().add(
-				textField);
-		textField.setColumns(
+				firstNameTextField);
+		firstNameTextField.setColumns(
 				10);
 
 		JLabel lblNewLabel = new JLabel("First name:");
@@ -99,27 +99,27 @@ public class AddMemberWindow implements AppNavigationWindow {
 		frame.getContentPane().add(
 				lblNewLabel_1);
 
-		textField_1 = new JTextField();
-		textField_1.setBounds(
+		lastNameTextField = new JTextField();
+		lastNameTextField.setBounds(
 				160,
 				102,
 				163,
 				26);
 		frame.getContentPane().add(
-				textField_1);
-		textField_1.setColumns(
+				lastNameTextField);
+		lastNameTextField.setColumns(
 				10);
 
-		textField_2 = new JTextField();
-		textField_2.setColumns(
+		phoneNumberTextField = new JTextField();
+		phoneNumberTextField.setColumns(
 				10);
-		textField_2.setBounds(
+		phoneNumberTextField.setBounds(
 				160,
 				140,
 				163,
 				26);
 		frame.getContentPane().add(
-				textField_2);
+				phoneNumberTextField);
 
 		JLabel lblNewLabel_2 = new JLabel("Last name:");
 		lblNewLabel_2.setHorizontalAlignment(
@@ -165,16 +165,16 @@ public class AddMemberWindow implements AppNavigationWindow {
 		frame.getContentPane().add(
 				lblCity);
 
-		textField_3 = new JTextField();
-		textField_3.setColumns(
+		cityTextField = new JTextField();
+		cityTextField.setColumns(
 				10);
-		textField_3.setBounds(
+		cityTextField.setBounds(
 				160,
 				233,
 				163,
 				26);
 		frame.getContentPane().add(
-				textField_3);
+				cityTextField);
 
 		JLabel lblState = new JLabel("State");
 		lblState.setHorizontalAlignment(
@@ -187,16 +187,16 @@ public class AddMemberWindow implements AppNavigationWindow {
 		frame.getContentPane().add(
 				lblState);
 
-		textField_4 = new JTextField();
-		textField_4.setColumns(
+		stateTextField = new JTextField();
+		stateTextField.setColumns(
 				10);
-		textField_4.setBounds(
+		stateTextField.setBounds(
 				160,
 				271,
 				163,
 				26);
 		frame.getContentPane().add(
-				textField_4);
+				stateTextField);
 
 		JLabel lblStreet = new JLabel("Street:");
 		lblStreet.setHorizontalAlignment(
@@ -209,16 +209,16 @@ public class AddMemberWindow implements AppNavigationWindow {
 		frame.getContentPane().add(
 				lblStreet);
 
-		textField_5 = new JTextField();
-		textField_5.setColumns(
+		streetTextField = new JTextField();
+		streetTextField.setColumns(
 				10);
-		textField_5.setBounds(
+		streetTextField.setBounds(
 				160,
 				309,
 				163,
 				26);
 		frame.getContentPane().add(
-				textField_5);
+				streetTextField);
 
 		JLabel lblZipCode = new JLabel("Zip Code:");
 		lblZipCode.setHorizontalAlignment(
@@ -231,28 +231,28 @@ public class AddMemberWindow implements AppNavigationWindow {
 		frame.getContentPane().add(
 				lblZipCode);
 
-		textField_6 = new JTextField();
-		textField_6.setColumns(
+		zipCodeTextField = new JTextField();
+		zipCodeTextField.setColumns(
 				10);
-		textField_6.setBounds(
+		zipCodeTextField.setBounds(
 				160,
 				342,
 				163,
 				26);
 		frame.getContentPane().add(
-				textField_6);
+				zipCodeTextField);
 
-		JButton btnNewButton = new JButton("Add member");
-		btnNewButton.setBounds(
+		JButton addMemberButton = new JButton("Add member");
+		addMemberButton.setBounds(
 				141,
 				401,
 				138,
 				38);
-		btnNewButton.addActionListener(
+		addMemberButton.addActionListener(
 				(action) -> addMember()
 		);
 		frame.getContentPane().add(
-				btnNewButton);
+				addMemberButton);
 	}
 
 
@@ -266,13 +266,13 @@ public class AddMemberWindow implements AppNavigationWindow {
 		}
 		final var addedMember = LibrarySystemFacade.addLibraryMember(
 				operation,
-				textField.getText(),
-				textField_1.getText(),
-				textField_5.getText(),
-				textField_3.getText(),
-				textField_4.getText(),
-				textField_6.getText(),
-				textField_2.getText()
+				firstNameTextField.getText(),
+				lastNameTextField.getText(),
+				streetTextField.getText(),
+				cityTextField.getText(),
+				stateTextField.getText(),
+				zipCodeTextField.getText(),
+				phoneNumberTextField.getText()
 		);
 		JOptionPane.showMessageDialog(
 				frame,
@@ -301,13 +301,13 @@ public class AddMemberWindow implements AppNavigationWindow {
 
 	private boolean inputsAreValid(){
 		final String[] values = {
-				textField.getText(),
-				textField_1.getText(),
-				textField_2.getText(),
-				textField_3.getText(),
-				textField_4.getText(),
-				textField_5.getText(),
-				textField_6.getText(),
+				firstNameTextField.getText(),
+				lastNameTextField.getText(),
+				phoneNumberTextField.getText(),
+				cityTextField.getText(),
+				stateTextField.getText(),
+				streetTextField.getText(),
+				zipCodeTextField.getText(),
 		};
 
 		return  new EmptyStringValidator().areValuesValid(Arrays.asList(values));

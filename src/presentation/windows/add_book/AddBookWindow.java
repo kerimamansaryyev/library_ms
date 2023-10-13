@@ -39,12 +39,12 @@ public class AddBookWindow implements AppNavigationWindow {
 
 	private AppNavigationView addAuthorNavigationView;
 
-	private JComboBox<BookType> comboBox;
+	private JComboBox<BookType> bookTypeComboBox;
 
 	private JFrame frame;
-	private JTextField textField_4;
-	private JTextField textField;
-	private JTextField textField_2;
+	private JTextField bookTitleTextField;
+	private JTextField isbnNumberTextField;
+	private JTextField numOfCopiesTextField;
 
 
 
@@ -118,16 +118,16 @@ public class AddBookWindow implements AppNavigationWindow {
 		frame.getContentPane().add(
 				lblNewLabel_4_1);
 
-		textField_4 = new JTextField();
-		textField_4.setColumns(
+		bookTitleTextField = new JTextField();
+		bookTitleTextField.setColumns(
 				10);
-		textField_4.setBounds(
+		bookTitleTextField.setBounds(
 				181,
 				44,
 				178,
 				29);
 		frame.getContentPane().add(
-				textField_4);
+				bookTitleTextField);
 
 		JLabel lblNewLabel_1 = new JLabel("Max Checkout Days");
 		lblNewLabel_1.setBounds(
@@ -138,41 +138,41 @@ public class AddBookWindow implements AppNavigationWindow {
 		frame.getContentPane().add(
 				lblNewLabel_1);
 
-		JButton btnNewButton = new JButton("Create");
+		JButton createButton = new JButton("Create");
 
-		btnNewButton.addActionListener(
+		createButton.addActionListener(
 				(action) -> addBook()
 		);
 
-		btnNewButton.setBounds(
+		createButton.setBounds(
 				129,
 				308,
 				184,
 				36);
 		frame.getContentPane().add(
-				btnNewButton);
+				createButton);
 
-		textField = new JTextField();
-		textField.setColumns(
+		isbnNumberTextField = new JTextField();
+		isbnNumberTextField.setColumns(
 				10);
-		textField.setBounds(
+		isbnNumberTextField.setBounds(
 				181,
 				77,
 				178,
 				29);
 		frame.getContentPane().add(
-				textField);
+				isbnNumberTextField);
 
-		textField_2 = new JTextField();
-		textField_2.setColumns(
+		numOfCopiesTextField = new JTextField();
+		numOfCopiesTextField.setColumns(
 				10);
-		textField_2.setBounds(
+		numOfCopiesTextField.setBounds(
 				181,
 				115,
 				178,
 				29);
 		frame.getContentPane().add(
-				textField_2);
+				numOfCopiesTextField);
 
 		JButton btnAddAuthor = new JButton("Add author");
 
@@ -188,16 +188,16 @@ public class AddBookWindow implements AppNavigationWindow {
 		frame.getContentPane().add(
 				btnAddAuthor);
 
-		comboBox = new JComboBox<>();
-		comboBox.setModel(
+		bookTypeComboBox = new JComboBox<>();
+		bookTypeComboBox.setModel(
 				new DefaultComboBoxModel<>(BookType.values()));
-		comboBox.setBounds(
+		bookTypeComboBox.setBounds(
 				181,
 				151,
 				105,
 				36);
 		frame.getContentPane().add(
-				comboBox);
+				bookTypeComboBox);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(
@@ -236,9 +236,9 @@ public class AddBookWindow implements AppNavigationWindow {
 
 	private boolean areInputsValid(){
 		final String[] values = {
-				textField.getText(),
-				textField_2.getText(),
-				textField_4.getText()
+				isbnNumberTextField.getText(),
+				numOfCopiesTextField.getText(),
+				bookTitleTextField.getText()
 		};
 
 		if(!new EmptyStringValidator().areValuesValid(Arrays.asList(values))){
@@ -248,10 +248,18 @@ public class AddBookWindow implements AppNavigationWindow {
 			return  false;
 		}
 
-		if(!new IntegerParseValidator().areValuesValid(Collections.singletonList(textField_2.getText()))){
+		if(!new IntegerParseValidator().areValuesValid(Collections.singletonList(numOfCopiesTextField.getText()))){
 			JOptionPane.showMessageDialog(
 					frame,
 					"Enter number of copies as numeric value!");
+			return  false;
+		}
+
+		final int numberOfCopies = Integer.parseInt(numOfCopiesTextField.getText());
+
+		if(numberOfCopies <= 0){
+
+			JOptionPane.showMessageDialog(frame, "Number of copies must be greater than 0");
 			return  false;
 		}
 
@@ -269,10 +277,10 @@ public class AddBookWindow implements AppNavigationWindow {
 		if(!areInputsValid()){
 			return;
 		}
-		final var bookTitle = textField_4.getText();
-		final var isbnNumber = textField.getText();
-		final var numOfCopies = Integer.parseInt(textField_2.getText());
-		final BookType bookType = (BookType) comboBox.getSelectedItem();
+		final var bookTitle = bookTitleTextField.getText();
+		final var isbnNumber = isbnNumberTextField.getText();
+		final var numOfCopies = Integer.parseInt(numOfCopiesTextField.getText());
+		final BookType bookType = (BookType) bookTypeComboBox.getSelectedItem();
 
 		try {
 			final var addedBook = LibrarySystemFacade.addBook(
@@ -308,9 +316,9 @@ public class AddBookWindow implements AppNavigationWindow {
 
 	private void clear(){
 		final JTextField[] textFields = {
-				textField,
-				textField_2,
-				textField_4
+				isbnNumberTextField,
+				numOfCopiesTextField,
+				bookTitleTextField
 		};
 
 		for(final var textField: textFields){
