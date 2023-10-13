@@ -1,0 +1,7 @@
+/BookNotFoundException.class
+/LibrarySystemException.class
+/MemberNotFoundException.class
+/OutOfBookCopiesException.class
+/OutOfCheckoutsLimitException.class
+/PasswordIncorrectException.class
+/UserNotFoundException.class
