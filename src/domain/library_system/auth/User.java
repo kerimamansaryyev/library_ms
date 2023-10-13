@@ -1,4 +1,4 @@
-package domain.library_system;
+package domain.library_system.auth;
 
 import domain.library_system.operations.library_operations.ILibraryOperation;
 import domain.library_system.user_access.Access;
@@ -18,12 +18,10 @@ public class User implements Serializable {
     }
 
 
-    public <T extends ILibraryOperation> boolean supportsOperation(Class<T> clazz){
-        return this.tryGetOperation(clazz) != null;
-    }
+
 
     @SuppressWarnings("unchecked")
-   public  <T extends ILibraryOperation> T tryGetOperation(Class<T> clazz){
+   <T extends ILibraryOperation> T tryGetOperation(Class<T> clazz){
 
         if(access == null){
             return  null;
@@ -44,13 +42,15 @@ public class User implements Serializable {
         this.access = access;
     }
 
+    boolean isItsPassword(String password){
+        return  this.password.equals(password);
+    }
+
     public String getUserName() {
         return userName;
     }
 
-    public boolean isItsPassword(String password){
-        return  this.password.equals(password);
-    }
+
 
     public void setUserName(String userName) {
         this.userName = userName;

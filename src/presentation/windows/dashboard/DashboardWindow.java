@@ -1,7 +1,8 @@
 package presentation.windows.dashboard;
 
 import domain.library_system.LibrarySystemFacade;
-import domain.library_system.User;
+import domain.library_system.auth.AuthFacade;
+import domain.library_system.auth.User;
 import domain.library_system.operations.library_operations.IAddBookCopyOperation;
 import domain.library_system.operations.library_operations.IAddBookOperation;
 import domain.library_system.operations.library_operations.IAddMemberOperation;
@@ -52,11 +53,11 @@ public class DashboardWindow implements AppNavigationWindow {
 		int verticalOffset = 115;
 
 
-		if(user.supportsOperation(IAddMemberOperation.class)){
+		if(LibrarySystemFacade.isOperationSupportedForUser(user,IAddMemberOperation.class)){
 			JButton addMemberButton = new JButton("Add member");
 			addMemberButton.addActionListener(
 					(action) -> AppNavigationFacade.navigateToAddMemberWindow(
-							user.tryGetOperation(IAddMemberOperation.class)
+							LibrarySystemFacade.tryGetOperationForUser(user,IAddMemberOperation.class)
 					)
 			);
 			addMemberButton.setBounds(
@@ -68,7 +69,7 @@ public class DashboardWindow implements AppNavigationWindow {
 			frame.getContentPane().add(
 					addMemberButton);
 		}
-		if(user.supportsOperation(ICheckoutBookOperation.class)){
+		if(LibrarySystemFacade.isOperationSupportedForUser(user,ICheckoutBookOperation.class)){
 			JButton checkoutButton = new JButton("Checkout book");
 			checkoutButton.setBounds(
 					horizontalOffset,
@@ -77,14 +78,14 @@ public class DashboardWindow implements AppNavigationWindow {
 					buttonHeight);
 			checkoutButton.addActionListener(
 					(action) -> AppNavigationFacade.navigateToCheckoutBookWindow(
-							user.tryGetOperation(ICheckoutBookOperation.class)
+							LibrarySystemFacade.tryGetOperationForUser(user,ICheckoutBookOperation.class)
 					)
 			);
 			verticalOffset+=gap;
 			frame.getContentPane().add(
 					checkoutButton);
 		}
-		if(user.supportsOperation(IAddBookOperation.class)){
+		if(LibrarySystemFacade.isOperationSupportedForUser(user,IAddBookOperation.class)){
 			JButton addBookButton = new JButton("Add book");
 			addBookButton.setBounds(
 					horizontalOffset,
@@ -93,7 +94,7 @@ public class DashboardWindow implements AppNavigationWindow {
 					buttonHeight);
 			addBookButton.addActionListener(
 					(actionEvent) -> AppNavigationFacade.navigateToAddBookWindow(
-							user.tryGetOperation(IAddBookOperation.class)
+							LibrarySystemFacade.tryGetOperationForUser(user,IAddBookOperation.class)
 					)
 			);
 			verticalOffset+=gap;
@@ -101,12 +102,12 @@ public class DashboardWindow implements AppNavigationWindow {
 					addBookButton);
 		}
 
-		if(user.supportsOperation(IAddBookCopyOperation.class)){
+		if(LibrarySystemFacade.isOperationSupportedForUser(user,IAddBookCopyOperation.class)){
 			JButton addBookCopyButton = new JButton("Add book copy");
 
 			addBookCopyButton.addActionListener(
 					(action) -> AppNavigationFacade.navigateToAddBookCopyWindow(
-							user.tryGetOperation(IAddBookCopyOperation.class)
+							LibrarySystemFacade.tryGetOperationForUser(user,IAddBookCopyOperation.class)
 					)
 			);
 

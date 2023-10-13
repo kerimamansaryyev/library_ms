@@ -1,6 +1,6 @@
 package presentation.navigation;
 
-import domain.library_system.User;
+import domain.library_system.auth.User;
 import domain.library_system.operations.library_operations.IAddBookCopyOperation;
 import domain.library_system.operations.library_operations.IAddBookOperation;
 import domain.library_system.operations.library_operations.IAddMemberOperation;

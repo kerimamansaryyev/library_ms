@@ -7,7 +7,8 @@ import domain.entities.library_member.CheckoutRecord;
 import domain.entities.library_member.LibraryMember;
 import domain.entities.library_member.LibraryMemberFacade;
 import domain.library_system.LibrarySystem;
-import domain.library_system.User;
+import domain.library_system.auth.AuthFacade;
+import domain.library_system.auth.User;
 import domain.library_system.exceptions.*;
 import domain.library_system.operations.auth_operations.AccessType;
 
@@ -128,7 +129,7 @@ public class LibrarySystemImpl extends LibrarySystem {
 
         final var foundUser = userMap.get(userName);
 
-        if(!foundUser.isItsPassword(password)){
+        if(!AuthFacade.isPasswordCorrect(foundUser, password)){
             throw new PasswordIncorrectException();
         }
 

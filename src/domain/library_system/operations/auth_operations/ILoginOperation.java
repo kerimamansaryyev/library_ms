@@ -1,6 +1,6 @@
 package domain.library_system.operations.auth_operations;
 
-import domain.library_system.User;
+import domain.library_system.auth.User;
 import domain.library_system.exceptions.PasswordIncorrectException;
 import domain.library_system.exceptions.UserNotFoundException;
 

@@ -1,5 +1,7 @@
 package domain.library_system;
 
+import domain.library_system.auth.AuthFacade;
+import domain.library_system.auth.User;
 import domain.library_system.operations.auth_operations.AccessType;
 import domain.library_system.operations.auth_operations.ILoginOperation;
 import domain.library_system.operations.library_operations.IAddBookCopyOperation;
@@ -23,9 +25,9 @@ public abstract class LibrarySystem implements
     }
 
     public static final User[] defaultUsers = {
-            new User("Kerim", "hello"),
-            new User("James", "hello"),
-            new User("Ivan", "hello")
+            AuthFacade.createUser("Kerim", "hello"),
+            AuthFacade.createUser("James", "hello"),
+            AuthFacade.createUser("Ivan", "hello")
     };
 
     static LibrarySystem getInstance(){
@@ -38,8 +40,8 @@ public abstract class LibrarySystem implements
         if(accessType == null){
             return;
         }
-
-        user.setAccess(
+        AuthFacade.setAccessForUser(
+                user,
                 switch (accessType){
 
                     case LIBRARIAN -> Access.createLibrarianAccess(this);

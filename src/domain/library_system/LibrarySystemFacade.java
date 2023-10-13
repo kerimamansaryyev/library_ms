@@ -3,12 +3,11 @@ package domain.library_system;
 import domain.entities.book.*;
 import domain.entities.library_member.CheckoutRecord;
 import domain.entities.library_member.LibraryMember;
+import domain.library_system.auth.AuthFacade;
+import domain.library_system.auth.User;
 import domain.library_system.exceptions.*;
 import domain.library_system.operations.auth_operations.AccessType;
-import domain.library_system.operations.library_operations.IAddBookCopyOperation;
-import domain.library_system.operations.library_operations.IAddBookOperation;
-import domain.library_system.operations.library_operations.IAddMemberOperation;
-import domain.library_system.operations.library_operations.ICheckoutBookOperation;
+import domain.library_system.operations.library_operations.*;
 import domain.library_system.usecases.*;
 
 import java.util.List;
@@ -106,7 +105,15 @@ public final class LibrarySystemFacade {
     }
 
     public static void logoutUser(User user){
-        user.setAccess(null);
+        AuthFacade.logoutUser(user);
+    }
+
+    public static <T extends ILibraryOperation> T tryGetOperationForUser(User user, Class<T> clazz){
+        return AuthFacade.tryGetOperation(user,clazz);
+    }
+
+    public static <T extends ILibraryOperation> boolean isOperationSupportedForUser(User user,Class<T> clazz){
+        return tryGetOperationForUser(user,clazz) != null;
     }
 
 }
