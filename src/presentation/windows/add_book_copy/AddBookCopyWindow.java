@@ -66,7 +66,7 @@ public class AddBookCopyWindow implements AppNavigationWindow {
 		frame.getContentPane().setLayout(
 				null);
 
-		JLabel lblNewLabel = new JLabel("ISBN number:");
+		JLabel lblNewLabel = new JLabel("ISBN:");
 		lblNewLabel.setHorizontalAlignment(
 				SwingConstants.CENTER);
 		lblNewLabel.setFont(
@@ -131,7 +131,7 @@ public class AddBookCopyWindow implements AppNavigationWindow {
 		frame.getContentPane().add(
 				lblNewLabel_2);
 
-		JButton addCopyButton = new JButton("Add copy");
+		JButton addCopyButton = new JButton("Add Copy");
 		addCopyButton.addActionListener(
 				(action) -> addBookCopy()
 		);
@@ -187,7 +187,7 @@ public class AddBookCopyWindow implements AppNavigationWindow {
 			);
 			JOptionPane.showMessageDialog(
 					frame,
-					"Successfully added the copy for the book. New number of copies: " + newCopiesNum
+					"Successfully added the copy of the book. New number of copies is: " + newCopiesNum
 			);
 		} catch (LibrarySystemException e) {
 			JOptionPane.showMessageDialog(frame, e.getMessage());

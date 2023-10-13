@@ -14,8 +14,8 @@ final class CheckoutRecordTableGenerator {
     public  static  final String[] COLUMNS = {
             "ISBN",
             "Title",
-            "Checkout date",
-            "Due date"
+            "Checkout Date",
+            "Due Date"
     };
 
     public static  String[][] generateTableData(CheckoutRecord record, String isbnNumber){

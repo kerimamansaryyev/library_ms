@@ -53,7 +53,7 @@ public class DashboardWindow implements AppNavigationWindow {
 
 
 		if(user.supportsOperation(IAddMemberOperation.class)){
-			JButton addMemberButton = new JButton("Add member");
+			JButton addMemberButton = new JButton("Add Member");
 			addMemberButton.addActionListener(
 					(action) -> AppNavigationFacade.navigateToAddMemberWindow(
 							user.tryGetOperation(IAddMemberOperation.class)
@@ -69,7 +69,7 @@ public class DashboardWindow implements AppNavigationWindow {
 					addMemberButton);
 		}
 		if(user.supportsOperation(ICheckoutBookOperation.class)){
-			JButton checkoutButton = new JButton("Checkout book");
+			JButton checkoutButton = new JButton("Checkout Book");
 			checkoutButton.setBounds(
 					horizontalOffset,
 					verticalOffset,
@@ -85,7 +85,7 @@ public class DashboardWindow implements AppNavigationWindow {
 					checkoutButton);
 		}
 		if(user.supportsOperation(IAddBookOperation.class)){
-			JButton addBookButton = new JButton("Add book");
+			JButton addBookButton = new JButton("Add Book");
 			addBookButton.setBounds(
 					horizontalOffset,
 					verticalOffset,
@@ -102,7 +102,7 @@ public class DashboardWindow implements AppNavigationWindow {
 		}
 
 		if(user.supportsOperation(IAddBookCopyOperation.class)){
-			JButton addBookCopyButton = new JButton("Add book copy");
+			JButton addBookCopyButton = new JButton("Add Book Copy");
 
 			addBookCopyButton.addActionListener(
 					(action) -> AppNavigationFacade.navigateToAddBookCopyWindow(

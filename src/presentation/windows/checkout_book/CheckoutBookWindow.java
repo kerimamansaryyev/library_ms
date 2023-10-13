@@ -67,7 +67,7 @@ public class CheckoutBookWindow implements AppNavigationWindow {
 		frame.getContentPane().setLayout(
 				null);
 
-		JLabel lblNewLabel = new JLabel("Checkout book");
+		JLabel lblNewLabel = new JLabel("Checkout Book");
 		lblNewLabel.setFont(
 				new Font("Lucida Grande", Font.PLAIN, 17));
 		lblNewLabel.setHorizontalAlignment(
@@ -89,7 +89,7 @@ public class CheckoutBookWindow implements AppNavigationWindow {
 		frame.getContentPane().add(
 				lblNewLabel_1);
 
-		JLabel lblNewLabel_1_1 = new JLabel("ISBN No");
+		JLabel lblNewLabel_1_1 = new JLabel("ISBN:");
 		lblNewLabel_1_1.setBounds(
 				78,
 				121,

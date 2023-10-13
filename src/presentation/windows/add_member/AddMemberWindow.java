@@ -75,7 +75,7 @@ public class AddMemberWindow implements AppNavigationWindow {
 		firstNameTextField.setColumns(
 				10);
 
-		JLabel lblNewLabel = new JLabel("First name:");
+		JLabel lblNewLabel = new JLabel("First Name:");
 		lblNewLabel.setHorizontalAlignment(
 				SwingConstants.CENTER);
 		lblNewLabel.setBounds(
@@ -86,7 +86,7 @@ public class AddMemberWindow implements AppNavigationWindow {
 		frame.getContentPane().add(
 				lblNewLabel);
 
-		JLabel lblNewLabel_1 = new JLabel("Personal Info");
+		JLabel lblNewLabel_1 = new JLabel("Personal Data");
 		lblNewLabel_1.setFont(
 				new Font("Lucida Grande", Font.PLAIN, 17));
 		lblNewLabel_1.setHorizontalAlignment(
@@ -121,7 +121,7 @@ public class AddMemberWindow implements AppNavigationWindow {
 		frame.getContentPane().add(
 				phoneNumberTextField);
 
-		JLabel lblNewLabel_2 = new JLabel("Last name:");
+		JLabel lblNewLabel_2 = new JLabel("Last Name:");
 		lblNewLabel_2.setHorizontalAlignment(
 				SwingConstants.CENTER);
 		lblNewLabel_2.setBounds(
@@ -141,7 +141,7 @@ public class AddMemberWindow implements AppNavigationWindow {
 		frame.getContentPane().add(
 				lblNewLabel_3);
 
-		JLabel lblNewLabel_1_1 = new JLabel("Address Info");
+		JLabel lblNewLabel_1_1 = new JLabel("ADDRESS");
 		lblNewLabel_1_1.setHorizontalAlignment(
 				SwingConstants.CENTER);
 		lblNewLabel_1_1.setFont(
@@ -242,7 +242,7 @@ public class AddMemberWindow implements AppNavigationWindow {
 		frame.getContentPane().add(
 				zipCodeTextField);
 
-		JButton addMemberButton = new JButton("Add member");
+		JButton addMemberButton = new JButton("Add Member");
 		addMemberButton.setBounds(
 				141,
 				401,
@@ -280,9 +280,9 @@ public class AddMemberWindow implements AppNavigationWindow {
 				String.format("""
 							New member has been created:
 							Id: %s
-							First name: %s
-							Last name: %s
-							Phone number: %s
+							First Name: %s
+							Last Name: %s
+							Phone Number: %s
 							City: %s
 							State: %s
 							Street: %s
