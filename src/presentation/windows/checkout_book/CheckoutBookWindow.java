@@ -1,12 +1,8 @@
 package presentation.windows.checkout_book;
 
 import domain.entities.library_member.CheckoutRecord;
-import domain.entities.library_member.LibraryMemberFacade;
 import domain.library_system.LibrarySystemFacade;
-import domain.library_system.exceptions.BookNotFoundException;
 import domain.library_system.exceptions.LibrarySystemException;
-import domain.library_system.exceptions.MemberNotFoundException;
-import domain.library_system.exceptions.OutOfBookCopiesException;
 import domain.library_system.operations.library_operations.ICheckoutBookOperation;
 import presentation.navigation.AppNavigationWindow;
 import presentation.windows.utils.validators.EmptyStringValidator;
