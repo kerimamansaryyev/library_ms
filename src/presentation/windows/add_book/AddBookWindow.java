@@ -297,9 +297,9 @@ public class AddBookWindow implements AppNavigationWindow {
 		if(!areInputsValid()){
 			return;
 		}
-		final var bookTitle = bookTitleTextField.getText();
-		final var isbnNumber = isbnNumberTextField.getText();
-		final var numOfCopies = Integer.parseInt(numOfCopiesTextField.getText());
+		final var bookTitle = bookTitleTextField.getText().trim();
+		final var isbnNumber = isbnNumberTextField.getText().trim();
+		final var numOfCopies = Integer.parseInt(numOfCopiesTextField.getText().trim());
 		final BookType bookType = (BookType) bookTypeComboBox.getSelectedItem();
 
 		final List<Author> authors = new ArrayList<>(authorsListModel.size());

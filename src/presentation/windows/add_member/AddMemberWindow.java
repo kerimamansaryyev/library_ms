@@ -267,13 +267,13 @@ public class AddMemberWindow implements AppNavigationWindow {
 		}
 		final var addedMember = LibrarySystemFacade.addLibraryMember(
 				operation,
-				firstNameTextField.getText(),
-				lastNameTextField.getText(),
-				streetTextField.getText(),
-				cityTextField.getText(),
-				stateTextField.getText(),
-				zipCodeTextField.getText(),
-				phoneNumberTextField.getText()
+				firstNameTextField.getText().trim(),
+				lastNameTextField.getText().trim(),
+				streetTextField.getText().trim(),
+				cityTextField.getText().trim(),
+				stateTextField.getText().trim(),
+				zipCodeTextField.getText().trim(),
+				phoneNumberTextField.getText().trim()
 		);
 		JOptionPane.showMessageDialog(
 				frame,

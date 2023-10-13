@@ -160,7 +160,7 @@ public class AddBookCopyWindow implements AppNavigationWindow {
 			return false;
 		}
 
-		final int numberOfCopies = Integer.parseInt(numberOfCopiesTextField.getText());
+		final int numberOfCopies = Integer.parseInt(numberOfCopiesTextField.getText().trim());
 
 		if(numberOfCopies <= 0){
 
@@ -177,12 +177,12 @@ public class AddBookCopyWindow implements AppNavigationWindow {
 			return;
 		}
 
-		final int numberOfCopies = Integer.parseInt(numberOfCopiesTextField.getText());
+		final int numberOfCopies = Integer.parseInt(numberOfCopiesTextField.getText().trim());
 
 		try {
 			final var newCopiesNum = LibrarySystemFacade.addBookCopy(
 					operation,
-					isbnTextField.getText(),
+					isbnTextField.getText().trim(),
 					numberOfCopies
 			);
 			JOptionPane.showMessageDialog(

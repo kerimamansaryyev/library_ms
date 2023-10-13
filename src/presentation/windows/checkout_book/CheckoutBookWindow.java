@@ -169,8 +169,8 @@ public class CheckoutBookWindow implements AppNavigationWindow {
 			return;
 		}
 		try {
-			final var memberId = memberIdTextField.getText();
-			final var isbn = isbnTextField.getText();
+			final var memberId = memberIdTextField.getText().trim();
+			final var isbn = isbnTextField.getText().trim();
 			final var checkoutRecord = LibrarySystemFacade.checkoutBook(
 				operation, memberId, isbn
 			);

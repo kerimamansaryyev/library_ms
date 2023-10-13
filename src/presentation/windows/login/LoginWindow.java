@@ -159,7 +159,7 @@ public class LoginWindow implements AppNavigationWindow {
 
 
 		try {
-			final var user = LibrarySystemFacade.loginUser(userName, password, castedAccessType);
+			final var user = LibrarySystemFacade.loginUser(userName.trim(), password, castedAccessType);
 			passwordField.setText("");
 			AppNavigationFacade.navigateToDashboardWindow(user);
 		} catch (LibrarySystemException e) {

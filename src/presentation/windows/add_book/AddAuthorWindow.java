@@ -302,15 +302,15 @@ class AddAuthorWindow implements AppNavigationWindow {
 			return;
 		}
 		final var addedAuthor = LibrarySystemFacade.addBookAuthor(
-				bioTextField.getText(),
+				bioTextField.getText().trim(),
 				credentialsCheckBox.isSelected(),
-				firstNameTextField.getText(),
-				lastNameTextField.getText(),
-				streetTextField.getText(),
-				cityTextField.getText(),
-				stateTextField.getText(),
-				zipCodeTextField.getText(),
-				phoneNumberTextField.getText());
+				firstNameTextField.getText().trim(),
+				lastNameTextField.getText().trim(),
+				streetTextField.getText().trim(),
+				cityTextField.getText().trim(),
+				stateTextField.getText().trim(),
+				zipCodeTextField.getText().trim(),
+				phoneNumberTextField.getText().trim());
 		JOptionPane.showMessageDialog(
 				frame,
 				"Author successfully added!");
