@@ -3,6 +3,7 @@ package domain.entities.book;
 import java.io.Serializable;
 import java.util.*;
 
+@SuppressWarnings({"FieldMayBeFinal", "CanBeFinal"})
 public class Book implements  Cloneable, Serializable {
 
     private final String isbnNumber;

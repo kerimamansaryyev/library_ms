@@ -2,7 +2,6 @@ package domain.library_system.user_access;
 
 import domain.entities.book.Author;
 import domain.entities.book.Book;
-import domain.entities.book.BookCopy;
 import domain.entities.book.BookType;
 import domain.entities.library_member.LibraryMember;
 import domain.library_system.LibrarySystem;

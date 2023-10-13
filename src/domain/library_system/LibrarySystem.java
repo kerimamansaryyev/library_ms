@@ -22,7 +22,7 @@ public abstract class LibrarySystem implements
         singleton = librarySystem;
     }
 
-    public static User[] defaultUsers = {
+    public static final User[] defaultUsers = {
             new User("Kerim", "hello"),
             new User("James", "hello"),
             new User("Ivan", "hello")

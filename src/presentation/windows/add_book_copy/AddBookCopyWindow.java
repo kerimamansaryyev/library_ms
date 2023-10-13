@@ -1,12 +1,10 @@
 package presentation.windows.add_book_copy;
 
 import domain.library_system.LibrarySystemFacade;
-import domain.library_system.exceptions.BookNotFoundException;
 import domain.library_system.exceptions.LibrarySystemException;
 import domain.library_system.operations.library_operations.IAddBookCopyOperation;
 import presentation.navigation.AppNavigationWindow;
 import presentation.windows.utils.validators.EmptyStringValidator;
-import presentation.windows.utils.validators.InputValidator;
 import presentation.windows.utils.validators.IntegerParseValidator;
 
 import java.awt.EventQueue;

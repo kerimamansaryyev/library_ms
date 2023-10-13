@@ -1,6 +1,5 @@
 package presentation.windows.add_member;
 
-import domain.library_system.LibrarySystem;
 import domain.library_system.LibrarySystemFacade;
 import domain.library_system.operations.library_operations.IAddMemberOperation;
 import presentation.navigation.AppNavigationWindow;
