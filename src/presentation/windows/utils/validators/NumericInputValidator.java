@@ -9,8 +9,8 @@ public class NumericInputValidator implements InputValidator {
     public boolean areValuesValid(List<String> values) {
         try {
             for(final var value:values){
-                Pattern pattern = Pattern.compile("^[-+]?\\d+$");
-                Matcher matcher = pattern.matcher(value);
+                Pattern pattern = Pattern.compile("^\\d+$");
+                Matcher matcher = pattern.matcher(value.trim());
                 if(!matcher.matches()){
                     return false;
                 }
