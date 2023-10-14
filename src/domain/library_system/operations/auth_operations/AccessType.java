@@ -5,7 +5,7 @@ import java.io.Serializable;
 public enum AccessType implements Serializable {
     LIBRARIAN("Librarian"),
     ADMIN("Admin"),
-    SUPER_ADMIN("Superadmin");
+    SUPER_ADMIN("Super Admin");
 
     private final String displayName;
 
