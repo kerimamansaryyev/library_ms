@@ -1,19 +1,24 @@
 package presentation.windows.add_member;
 
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.util.Arrays;
+import java.util.Collections;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
 import domain.library_system.LibrarySystemFacade;
 import domain.library_system.operations.library_operations.IAddMemberOperation;
 import presentation.navigation.AppNavigationWindow;
 import presentation.windows.utils.validators.EmptyStringValidator;
-
-import java.awt.EventQueue;
-import java.awt.Font;
-import java.util.Arrays;
-
-import javax.swing.*;
+import presentation.windows.utils.validators.NumericInputValidator;
 
 public class AddMemberWindow implements AppNavigationWindow {
-
-
 
 	private final IAddMemberOperation operation;
 	private JFrame frame;
@@ -25,19 +30,13 @@ public class AddMemberWindow implements AppNavigationWindow {
 	private JTextField streetTextField;
 	private JTextField zipCodeTextField;
 
-
 	public static void main(String[] args) {
 		EventQueue.invokeLater(
 				() -> {
 					try {
-						AddMemberWindow window = new AddMemberWindow((
-								firstName,
-								lastName,
-								street,
-								city,
-								state,
-								zipCode,
-								phoneNumber) -> null);
+						AddMemberWindow window = new AddMemberWindow(
+								(firstName, lastName, street, city, state,
+										zipCode, phoneNumber) -> null);
 						window.frame.setVisible(
 								true);
 					} catch (Exception e) {
@@ -46,13 +45,14 @@ public class AddMemberWindow implements AppNavigationWindow {
 				});
 	}
 
-
 	public AddMemberWindow(IAddMemberOperation addMemberOperation) {
 		this.operation = addMemberOperation;
 		initialize();
 	}
 
-
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	private void initialize() {
 		frame = new JFrame();
 		overrideWindowClosing();
@@ -94,7 +94,7 @@ public class AddMemberWindow implements AppNavigationWindow {
 		lblNewLabel_1.setBounds(
 				152,
 				19,
-				110,
+				127,
 				33);
 		frame.getContentPane().add(
 				lblNewLabel_1);
@@ -249,20 +249,15 @@ public class AddMemberWindow implements AppNavigationWindow {
 				138,
 				38);
 		addMemberButton.addActionListener(
-				(action) -> addMember()
-		);
+				(action) -> addMember());
 		frame.getContentPane().add(
 				addMemberButton);
-		frame.setResizable(false);
+		frame.setResizable(
+				false);
 	}
 
-
-	private void addMember(){
-		if(!inputsAreValid()){
-			JOptionPane.showMessageDialog(
-					frame,
-					"Fill in all the inputs correctly!"
-			);
+	private void addMember() {
+		if (!inputsAreValid()) {
 			return;
 		}
 		final var addedMember = LibrarySystemFacade.addLibraryMember(
@@ -273,20 +268,20 @@ public class AddMemberWindow implements AppNavigationWindow {
 				cityTextField.getText().trim(),
 				stateTextField.getText().trim(),
 				zipCodeTextField.getText().trim(),
-				phoneNumberTextField.getText().trim()
-		);
+				phoneNumberTextField.getText().trim());
 		JOptionPane.showMessageDialog(
 				frame,
-				String.format("""
-							New member has been created:
-							Id: %s
-							First Name: %s
-							Last Name: %s
-							Phone Number: %s
-							City: %s
-							State: %s
-							Street: %s
-							Zip code: %s""",
+				String.format(
+						"""
+								New member has been created:
+								Id: %s
+								First Name: %s
+								Last Name: %s
+								Phone Number: %s
+								City: %s
+								State: %s
+								Street: %s
+								Zip code: %s""",
 						addedMember.getMemberId(),
 						addedMember.getFirstName(),
 						addedMember.getLastName(),
@@ -294,32 +289,29 @@ public class AddMemberWindow implements AppNavigationWindow {
 						addedMember.getAddress().getCity(),
 						addedMember.getAddress().getState(),
 						addedMember.getAddress().getStreet(),
-						addedMember.getAddress().getZip()
-				)
-		);
+						addedMember.getAddress().getZip()));
 		clear();
 
 	}
 
-	private void clear () {
+	private void clear() {
 
-		final JTextField [] textFields = {
+		final JTextField[] textFields = {
 				firstNameTextField,
 				lastNameTextField,
 				streetTextField,
 				cityTextField,
 				stateTextField,
 				zipCodeTextField,
-				phoneNumberTextField,
-		};
+				phoneNumberTextField,};
 
-		for (final var textField: textFields){
-			textField.setText("");
+		for (final var textField : textFields) {
+			textField.setText(
+					"");
 		}
 	}
 
-
-	private boolean inputsAreValid(){
+	private boolean inputsAreValid() {
 		final String[] values = {
 				firstNameTextField.getText(),
 				lastNameTextField.getText(),
@@ -327,14 +319,33 @@ public class AddMemberWindow implements AppNavigationWindow {
 				cityTextField.getText(),
 				stateTextField.getText(),
 				streetTextField.getText(),
-				zipCodeTextField.getText(),
-		};
+				zipCodeTextField.getText(),};
 
-		return  new EmptyStringValidator().areValuesValid(Arrays.asList(values));
+		if(!new EmptyStringValidator().areValuesValid(
+				Arrays.asList(
+						values))){
+			JOptionPane.showMessageDialog(
+					frame,
+					"Fill in all the inputs correctly!");
+			return false;
+		}
+		if(!new NumericInputValidator().areValuesValid(Collections.singletonList(phoneNumberTextField.getText()))){
+			JOptionPane.showMessageDialog(
+					frame,
+					"Enter a phone number as a numeric value, without symbols!");
+			return false;
+		}
+		if(!new NumericInputValidator().areValuesValid(Collections.singletonList(zipCodeTextField.getText()))){
+			JOptionPane.showMessageDialog(
+					frame,
+					"Enter a zip code as a numeric value, without symbols!");
+			return false;
+		}
+		return  true;
 	}
 
 	@Override
 	public JFrame getJFrame() {
-		return  frame;
+		return frame;
 	}
 }

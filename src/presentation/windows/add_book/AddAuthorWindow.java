@@ -3,6 +3,7 @@ package presentation.windows.add_book;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.util.Arrays;
+import java.util.Collections;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -16,6 +17,7 @@ import domain.entities.book.Author;
 import domain.library_system.LibrarySystemFacade;
 import presentation.navigation.AppNavigationWindow;
 import presentation.windows.utils.validators.EmptyStringValidator;
+import presentation.windows.utils.validators.NumericInputValidator;
 
 class AddAuthorWindow implements AppNavigationWindow {
 
@@ -296,9 +298,6 @@ class AddAuthorWindow implements AppNavigationWindow {
 
 	private void addMember() {
 		if (!inputsAreValid()) {
-			JOptionPane.showMessageDialog(
-					frame,
-					"Fill in all the inputs correctly!");
 			return;
 		}
 		final var addedAuthor = LibrarySystemFacade.addBookAuthor(
@@ -345,12 +344,29 @@ class AddAuthorWindow implements AppNavigationWindow {
 				cityTextField.getText(),
 				stateTextField.getText(),
 				streetTextField.getText(),
-				zipCodeTextField.getText(),
-				bioTextField.getText()};
+				zipCodeTextField.getText(),};
 
-		return new EmptyStringValidator().areValuesValid(
+		if(!new EmptyStringValidator().areValuesValid(
 				Arrays.asList(
-						values));
+						values))){
+			JOptionPane.showMessageDialog(
+					frame,
+					"Fill in all the inputs correctly!");
+			return false;
+		}
+		if(!new NumericInputValidator().areValuesValid(Collections.singletonList(phoneNumberTextField.getText()))){
+			JOptionPane.showMessageDialog(
+					frame,
+					"Enter a phone number as a numeric value, without symbols!");
+			return false;
+		}
+		if(!new NumericInputValidator().areValuesValid(Collections.singletonList(zipCodeTextField.getText()))){
+			JOptionPane.showMessageDialog(
+					frame,
+					"Enter a zip code as a numeric value, without symbols!");
+			return false;
+		}
+		return  true;
 	}
 
 	@Override

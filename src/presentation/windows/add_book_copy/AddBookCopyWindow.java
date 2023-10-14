@@ -5,7 +5,7 @@ import domain.library_system.exceptions.LibrarySystemException;
 import domain.library_system.operations.library_operations.IAddBookCopyOperation;
 import presentation.navigation.AppNavigationWindow;
 import presentation.windows.utils.validators.EmptyStringValidator;
-import presentation.windows.utils.validators.IntegerParseValidator;
+import presentation.windows.utils.validators.NumericInputValidator;
 
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -155,7 +155,7 @@ public class AddBookCopyWindow implements AppNavigationWindow {
 			JOptionPane.showMessageDialog(frame, "Please, fill in all the fields correctly!");
 			return  false;
 		}
-		if(!new IntegerParseValidator().areValuesValid(Collections.singletonList(numberOfCopiesTextField.getText()))){
+		if(!new NumericInputValidator().areValuesValid(Collections.singletonList(numberOfCopiesTextField.getText()))){
 			JOptionPane.showMessageDialog(frame, "Enter a numeric value into the field of number of copies");
 			return false;
 		}

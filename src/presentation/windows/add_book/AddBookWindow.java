@@ -17,7 +17,7 @@ import presentation.navigation.AppNavigationView;
 import presentation.navigation.AppNavigationWindow;
 import presentation.navigation.utils.NavigationWindowListener;
 import presentation.windows.utils.validators.EmptyStringValidator;
-import presentation.windows.utils.validators.IntegerParseValidator;
+import presentation.windows.utils.validators.NumericInputValidator;
 
 public class AddBookWindow implements AppNavigationWindow {
 
@@ -268,7 +268,7 @@ public class AddBookWindow implements AppNavigationWindow {
 			return  false;
 		}
 
-		if(!new IntegerParseValidator().areValuesValid(Collections.singletonList(numOfCopiesTextField.getText()))){
+		if(!new NumericInputValidator().areValuesValid(Collections.singletonList(numOfCopiesTextField.getText()))){
 			JOptionPane.showMessageDialog(
 					frame,
 					"Enter number of copies as numeric value!");
