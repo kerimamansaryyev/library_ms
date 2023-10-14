@@ -1,18 +1,25 @@
 package presentation.windows.checkout_book;
 
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.util.Arrays;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+
 import domain.entities.library_member.CheckoutRecord;
 import domain.library_system.LibrarySystemFacade;
 import domain.library_system.exceptions.LibrarySystemException;
 import domain.library_system.operations.library_operations.ICheckoutBookOperation;
 import presentation.navigation.AppNavigationWindow;
 import presentation.windows.utils.validators.EmptyStringValidator;
-
-import java.awt.EventQueue;
-import java.awt.Font;
-import java.util.Arrays;
-
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 
 public class CheckoutBookWindow implements AppNavigationWindow {
 
@@ -29,7 +36,8 @@ public class CheckoutBookWindow implements AppNavigationWindow {
 		EventQueue.invokeLater(
 				() -> {
 					try {
-						CheckoutBookWindow window = new CheckoutBookWindow(null);
+						CheckoutBookWindow window = new CheckoutBookWindow(
+								null);
 						window.frame.setVisible(
 								true);
 					} catch (Exception e) {
@@ -57,7 +65,7 @@ public class CheckoutBookWindow implements AppNavigationWindow {
 		frame.setBounds(
 				100,
 				100,
-				450,
+				531,
 				452);
 		overrideWindowClosing();
 		frame.getContentPane().setLayout(
@@ -69,8 +77,8 @@ public class CheckoutBookWindow implements AppNavigationWindow {
 		lblNewLabel.setHorizontalAlignment(
 				SwingConstants.CENTER);
 		lblNewLabel.setBounds(
-				120,
-				6,
+				170,
+				19,
 				193,
 				16);
 		frame.getContentPane().add(
@@ -78,8 +86,8 @@ public class CheckoutBookWindow implements AppNavigationWindow {
 
 		JLabel lblNewLabel_1 = new JLabel("Member ID");
 		lblNewLabel_1.setBounds(
-				78,
-				74,
+				128,
+				87,
 				91,
 				35);
 		frame.getContentPane().add(
@@ -87,8 +95,8 @@ public class CheckoutBookWindow implements AppNavigationWindow {
 
 		JLabel lblNewLabel_1_1 = new JLabel("ISBN:");
 		lblNewLabel_1_1.setBounds(
-				78,
-				121,
+				128,
+				134,
 				91,
 				35);
 		frame.getContentPane().add(
@@ -96,8 +104,8 @@ public class CheckoutBookWindow implements AppNavigationWindow {
 
 		memberIdTextField = new JTextField();
 		memberIdTextField.setBounds(
-				176,
-				74,
+				226,
+				87,
 				163,
 				35);
 		frame.getContentPane().add(
@@ -109,8 +117,8 @@ public class CheckoutBookWindow implements AppNavigationWindow {
 		isbnTextField.setColumns(
 				10);
 		isbnTextField.setBounds(
-				176,
-				121,
+				226,
+				134,
 				163,
 				35);
 		frame.getContentPane().add(
@@ -118,14 +126,13 @@ public class CheckoutBookWindow implements AppNavigationWindow {
 
 		JButton checkoutButton = new JButton("Checkout");
 		checkoutButton.setBounds(
-				154,
-				168,
+				204,
+				181,
 				114,
 				35);
 
 		checkoutButton.addActionListener(
-				(action) -> checkoutBook()
-		);
+				(action) -> checkoutBook());
 
 		frame.getContentPane().add(
 				checkoutButton);
@@ -134,7 +141,7 @@ public class CheckoutBookWindow implements AppNavigationWindow {
 		scrollPane.setBounds(
 				16,
 				253,
-				417,
+				497,
 				154);
 		frame.getContentPane().add(
 				scrollPane);
@@ -142,51 +149,59 @@ public class CheckoutBookWindow implements AppNavigationWindow {
 		table = new JTable();
 		scrollPane.setViewportView(
 				table);
-		frame.setResizable(false);
+		frame.setResizable(
+				false);
 	}
 
-
-	private boolean areInputsValid(){
-		if(!new EmptyStringValidator().areValuesValid(Arrays.asList(
-				isbnTextField.getText(),
-				memberIdTextField.getText()
-		))){
+	private boolean areInputsValid() {
+		if (!new EmptyStringValidator().areValuesValid(
+				Arrays.asList(
+						isbnTextField.getText(),
+						memberIdTextField.getText()))) {
 			JOptionPane.showMessageDialog(
 					frame,
-					"Fill in all the fields correctly!"
-			);
+					"Fill in all the fields correctly!");
 			return false;
 		}
-		return  true;
+		return true;
 	}
 
-	private void checkoutBook(){
-		if(!areInputsValid()){
+	private void checkoutBook() {
+		if (!areInputsValid()) {
 			return;
 		}
 		try {
 			final var memberId = memberIdTextField.getText().trim();
 			final var isbn = isbnTextField.getText().trim();
 			final var checkoutRecord = LibrarySystemFacade.checkoutBook(
-				operation, memberId, isbn
-			);
-			setTableModel(checkoutRecord, isbn);
+					operation,
+					memberId,
+					isbn);
+			setTableModel(
+					checkoutRecord,
+					isbn);
 		} catch (LibrarySystemException e) {
-			JOptionPane.showMessageDialog(frame,e.getMessage());
+			JOptionPane.showMessageDialog(
+					frame,
+					e.getMessage());
 		}
 	}
-	private void setTableModel(CheckoutRecord record, String filterByIsbnNumber){
+	private void setTableModel(CheckoutRecord record,
+			String filterByIsbnNumber) {
 		table.setModel(
 				new DefaultTableModel(
-						CheckoutRecordTableGenerator.generateTableData(record, filterByIsbnNumber),
-						CheckoutRecordTableGenerator.COLUMNS
-				)
-		);
+						CheckoutRecordTableGenerator.generateTableData(
+								record,
+								filterByIsbnNumber),
+						CheckoutRecordTableGenerator.COLUMNS));
 	}
 
-	private void initializeTable(){
-		setTableModel(null, null);
-		table.setEnabled(false);
+	private void initializeTable() {
+		setTableModel(
+				null,
+				null);
+		table.setEnabled(
+				false);
 	}
 
 	@Override

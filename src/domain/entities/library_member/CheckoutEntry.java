@@ -39,6 +39,13 @@ public class CheckoutEntry implements Serializable {
         return checkoutRecord.getLibraryMember().getMemberId();
     }
 
+    public  String getLibraryMemberName(){
+        final var firstName = checkoutRecord.getLibraryMember().getFirstName();
+        final var lastName = checkoutRecord.getLibraryMember().getLastName();
+
+        return String.format("%s %s", firstName, lastName);
+    }
+
     public String getBookTitle(){
         return  bookCopy.readBook().getTitle();
 
