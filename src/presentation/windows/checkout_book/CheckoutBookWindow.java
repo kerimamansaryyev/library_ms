@@ -65,7 +65,7 @@ public class CheckoutBookWindow implements AppNavigationWindow {
 		frame.setBounds(
 				100,
 				100,
-				531,
+				551,
 				452);
 		overrideWindowClosing();
 		frame.getContentPane().setLayout(
@@ -141,7 +141,7 @@ public class CheckoutBookWindow implements AppNavigationWindow {
 		scrollPane.setBounds(
 				16,
 				253,
-				497,
+				517,
 				154);
 		frame.getContentPane().add(
 				scrollPane);

@@ -35,8 +35,8 @@ public class CheckoutEntry implements Serializable {
         return  bookCopy.readBook().getIsbnNumber();
     }
 
-    public  String getLibraryMemberId(){
-        return checkoutRecord.getLibraryMember().getMemberId();
+    public int getBookCopyNumber(){
+        return  bookCopy.copyNumber;
     }
 
     public  String getLibraryMemberFullName(){

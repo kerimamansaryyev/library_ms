@@ -16,7 +16,8 @@ final class CheckoutRecordTableGenerator {
             "ISBN",
             "Title",
             "Checkout Date",
-            "Due Date"
+            "Due Date",
+            "Copy №"
     };
 
     public static  String[][] generateTableData(CheckoutRecord record, String isbnNumber){
@@ -48,6 +49,7 @@ final class CheckoutRecordTableGenerator {
             data[i][2] = entry.getBookTitle();
             data[i][3] = entry.getCheckoutDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.US));
             data[i][4] = entry.getDueDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.US));
+            data[i][5] = Integer.toString(entry.getBookCopyNumber());
         }
 
         return data;
