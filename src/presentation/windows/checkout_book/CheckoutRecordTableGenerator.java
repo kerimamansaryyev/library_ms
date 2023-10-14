@@ -43,7 +43,7 @@ final class CheckoutRecordTableGenerator {
 
         for(int i=0;i<data.length;i++){
             final var entry = filtered.get(i);
-            data[i][0] = entry.getLibraryMemberName();
+            data[i][0] = entry.getLibraryMemberFullName();
             data[i][1] = entry.getBookIsbnNumber();
             data[i][2] = entry.getBookTitle();
             data[i][3] = entry.getCheckoutDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.US));
