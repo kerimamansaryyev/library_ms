@@ -8,6 +8,7 @@ import java.util.*;
 import javax.swing.*;
 
 import domain.entities.book.Author;
+import domain.entities.book.Book;
 import domain.entities.book.BookType;
 import domain.library_system.LibrarySystemFacade;
 import domain.library_system.exceptions.BookAlreadyExistsException;
@@ -246,10 +247,15 @@ public class AddBookWindow implements AppNavigationWindow {
 		frame.setResizable(false);
 	}
 
+
+	private AddAuthorWindow createAddAuthorWindow(){
+		return new AddAuthorWindow(authorsListModel);
+	}
+
 	private void showAddAuthorsDialog(){
 		if(addAuthorNavigationView == null || !addAuthorNavigationView.isVisible()){
 			addAuthorNavigationView = AppNavigationFacade.navigateTo(
-					new AddAuthorWindow(authorsListModel), false
+					createAddAuthorWindow(), false
 			);
 		}
 	}
@@ -293,6 +299,34 @@ public class AddBookWindow implements AppNavigationWindow {
 		return  true;
 	}
 
+
+	private List<Author> convertAuthorEntriesToAuthors(){
+		final List<Author> authors = new ArrayList<>(authorsListModel.size());
+
+		for(final var entry: Collections.list(authorsListModel.elements())){
+			authors.add(entry.author);
+		}
+
+		return authors;
+
+	}
+
+	private void showSuccessfullyBookAddedMessage(Book addedBook){
+		JOptionPane.showMessageDialog(frame,String.format("""
+						Book has successfully been added:
+						ISBN: %s
+						Title: %s
+						Max checkout days: %d
+						Number of copies: %d
+						Number of authors: %d
+						""",
+				addedBook.getIsbnNumber(),
+				addedBook.getTitle(),
+				addedBook.getBookType().borrowDaysLimit,
+				addedBook.getNumberOfCopies(),
+				addedBook.getAuthors().size()
+		));
+	}
 	private void addBook(){
 		if(!areInputsValid()){
 			return;
@@ -302,37 +336,20 @@ public class AddBookWindow implements AppNavigationWindow {
 		final var numOfCopies = Integer.parseInt(numOfCopiesTextField.getText().trim());
 		final BookType bookType = (BookType) bookTypeComboBox.getSelectedItem();
 
-		final List<Author> authors = new ArrayList<>(authorsListModel.size());
 
-		for(final var entry: Collections.list(authorsListModel.elements())){
-			authors.add(entry.author);
-		}
 
 		try {
 			final var addedBook = LibrarySystemFacade.addBook(
 					operation,
 					isbnNumber,
 					bookTitle,
-					authors,
+					convertAuthorEntriesToAuthors(),
 					numOfCopies,
 					bookType
 			);
 			clear();
 
-			JOptionPane.showMessageDialog(frame,String.format("""
-						Book has successfully been added:
-						ISBN: %s
-						Title: %s
-						Max checkout days: %d
-						Number of copies: %d
-						Number of authors: %d
-						""",
-						addedBook.getIsbnNumber(),
-						addedBook.getTitle(),
-						addedBook.getBookType().borrowDaysLimit,
-						addedBook.getNumberOfCopies(),
-						addedBook.getAuthors().size()
-					));
+			showSuccessfullyBookAddedMessage(addedBook);
 		} catch (BookAlreadyExistsException e) {
 			JOptionPane.showMessageDialog(frame, e.getMessage());
 		}

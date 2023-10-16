@@ -256,7 +256,7 @@ class AddAuthorWindow implements AppNavigationWindow {
 				138,
 				38);
 		addAuthorButton.addActionListener(
-				(action) -> addMember());
+				(action) -> addAuthor());
 		frame.getContentPane().add(
 				addAuthorButton);
 
@@ -296,7 +296,7 @@ class AddAuthorWindow implements AppNavigationWindow {
 				false);
 	}
 
-	private void addMember() {
+	private void addAuthor() {
 		if (!inputsAreValid()) {
 			return;
 		}
