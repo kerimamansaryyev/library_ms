@@ -25,5 +25,11 @@ bin/
 ### VS Code ###
 .vscode/
 
+### Eclipse ###
+.metadata/
+
+### Intellij ###
+.idea/
+
 ### Mac OS ###
 .DS_Store
