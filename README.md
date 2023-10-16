@@ -65,6 +65,26 @@ for client classes (often windows) to interact with `AppNavigator`.
 `AppNavigator` manages internal `AppNavigationStack` top "pop"
 and "push" windows.
 - `presentation.windows` - contains packages with the windows (pages).
-Each window implements `AppNavigationWindow` interface so it can be
+Each window implements `AppNavigationWindow` interface, so it can be
 managed by `AppNavigator`.
+
+#### Input Validation
+A package `presentation.windows.utils.validators` contains typical general-purpose validators, such as
+`EmptyStringValidator` for preventing empty inputs and `NumericInputValidator` for forcing usage of digits, 
+that implement `InputValidator` interface. However, some inputs, such as an input for entering a number of book copies,
+require some extra validation which is done particularly locally inside the window class.
+
+## Diagrams:
+
+### Domain classes diagram (static models):
+![domain classes diagram](./diagrams/Domain%20class%20model.png)
+### Checkout book operation class diagram:
+![domain classes diagram](./diagrams/Checkout%20Class%20Diagram.png)
+### Checkout book operation sequence diagram:
+![domain classes diagram](./diagrams/Checkout%20sequence%20diagram.png)
+### Add book operation sequence diagram:
+![domain classes diagram](./diagrams/Add%20book%20sequence%20diagram.png)
+### Use-cases diagram:
+![domain classes diagram](./diagrams/Use_case_diagram.JPG)
+
 
